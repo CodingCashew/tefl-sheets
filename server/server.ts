@@ -1,9 +1,11 @@
+'./sheetsController';
+import { Request, Response } from 'express';
 const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = 8080;
-const sheetsController = require("./sheetsController");
 require("dotenv").config();
+const sheetsController = require ('./sheetsController');
 
 // parse incoming requests
 app.use(express.json());
@@ -12,27 +14,21 @@ app.use(express.urlencoded({ extended: true }));
 // serve static and html
 app.use(express.static(path.resolve(__dirname, "../src/styles.css")));
 app.use(express.static(path.resolve(__dirname, "../src/assets/")));
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.get("/getSheets", sheetsController.getSheets, (req, res) => {
+app.get("/getSheets", sheetsController.getSheets, (req:Request, res:Response) => {
   return res.status(200).json(res.locals.sheets);
 });
 
-// TODO: handle search params
-// app.get("/getSheets", sheetController.getSheets, (req, res) => {
-//   return res.status(200).json(res.locals.sheets);
-// });
-
-
 // requests to an unknown route
-app.use("*", (req, res) =>
+app.use("*", (req: Request, res: Response) =>
   res.status(404).send("The page you are looking for does not exist.")
 );
 
 // global error handler
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: any) => {
   const defaultErr = {
     log: "Express error handler caught unknown middleware error",
     status: 400,
