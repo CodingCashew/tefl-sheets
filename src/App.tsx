@@ -1,14 +1,25 @@
 import React from "react";
-// import logo from "./logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Sheets from "./pages/Sheets";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Contact from "./pages/Contact";
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello, World!</h1>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sheets" element={<Sheets />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
