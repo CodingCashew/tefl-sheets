@@ -1,45 +1,42 @@
 // const db = require("./SheetsModel.js");
 import { Request, Response } from "express";
+import { Sheet, SheetsController } from "../shared/interfaces";
 
-interface Sheet {
-  id: number;
-  title: string;
-  type: string;
-  subject: string;
-  level: string;
-  language: string;
-  pdfUrl: string;
-  createdDate: Date;
-  updatedDate: Date;
-}
-
-const temporarySheet1: Sheet = {
-  id: 1,
-  title: "Test Sheet",
-  type: "Test Type",
-  subject: "Test Subject",
-  level: "Test Level",
-  language: "Test Language",
-  pdfUrl: "Test URL",
-  createdDate: new Date(),
-  updatedDate: new Date(),
-};
-
-const temporarySheet2: Sheet = {
-  id: 1,
-  title: "Test Sheet",
-  type: "Test Type",
-  subject: "Test Subject",
-  level: "Test Level",
-  language: "Test Language",
-  pdfUrl: "Test URL",
-  createdDate: new Date(),
-  updatedDate: new Date(),
-};
-
-interface SheetsController {
-  getSheets?: (req: Request, res: Response, next: any) => void;
-}
+const temporarySheets: Sheet[] = [
+  {
+    id: 1,
+    title: "Test Sheet",
+    type: "Test Type",
+    subject: "Test Subject",
+    level: "Test Level",
+    language: "Test Language",
+    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    createdDate: new Date(),
+    updatedDate: new Date(),
+  },
+  {
+    id: 2,
+    title: "Test Sheet2",
+    type: "Test Type2",
+    subject: "Test Subject2",
+    level: "Test Level2",
+    language: "Test Language2",
+    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    createdDate: new Date(),
+    updatedDate: new Date(),
+  },
+  {
+    id: 3,
+    title: "Test Sheet3",
+    type: "Test Type3",
+    subject: "Test Subject3",
+    level: "Test Level3",
+    language: "Test Language3",
+    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    createdDate: new Date(),
+    updatedDate: new Date(),
+  },
+];
 
 export const sheetsController: SheetsController = {};
 
@@ -48,7 +45,7 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
 
   // db.query(queryString)
   //   .then((data) => {
-  res.locals.sheets = [temporarySheet1, temporarySheet2];
+  res.locals.sheets = temporarySheets;
   // res.locals.sheets = data.rows;
   return next();
   // })

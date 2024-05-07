@@ -1,11 +1,10 @@
-'./sheetsController';
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = 8080;
 require("dotenv").config();
-const sheetsController = require ('./sheetsController');
+const sheetsController = require("./sheetsController");
 
 // parse incoming requests
 app.use(express.json());
@@ -18,9 +17,13 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.get("/getSheets", sheetsController.getSheets, (req:Request, res:Response) => {
-  return res.status(200).json(res.locals.sheets);
-});
+app.get(
+  "/getSheets",
+  sheetsController.getSheets,
+  (req: Request, res: Response) => {
+    return res.status(200).json(res.locals.sheets);
+  }
+);
 
 // requests to an unknown route
 app.use("*", (req: Request, res: Response) =>
