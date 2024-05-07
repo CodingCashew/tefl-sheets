@@ -6,15 +6,17 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
+import Sheet from "./pages/Sheet";
 import "./App.css";
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sheets" element={<Sheets />} />
+        <Route path="/sheets/:sheetId" element={<Sheet />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />

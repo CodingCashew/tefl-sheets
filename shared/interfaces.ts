@@ -12,6 +12,10 @@ export interface Sheet {
   level: string;
   language: string;
   pdfUrl: string;
+  snippedImagePath: string;
   createdDate: Date;
   updatedDate: Date;
+  description: string;
+  blurb: string;
+  price: number;
 }

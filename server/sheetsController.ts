@@ -10,9 +10,14 @@ const temporarySheets: Sheet[] = [
     subject: "Test Subject",
     level: "Test Level",
     language: "Test Language",
-    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    pdfUrl: "/assets/dummyPDF.jpg",
+    snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
+    description:
+      "This is a longer description of the product that includes some of the most important information about the product in question.",
+    blurb: "Short Blurb",
+    price: 4,
   },
   {
     id: 2,
@@ -21,9 +26,14 @@ const temporarySheets: Sheet[] = [
     subject: "Test Subject2",
     level: "Test Level2",
     language: "Test Language2",
-    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    pdfUrl: "/assets/dummyPDF.jpg",
+    snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
+    description:
+      "This is a longer description of the product that includes some of the most important information about the product in question.",
+    blurb: "Short Blurb",
+    price: 4,
   },
   {
     id: 3,
@@ -32,9 +42,14 @@ const temporarySheets: Sheet[] = [
     subject: "Test Subject3",
     level: "Test Level3",
     language: "Test Language3",
-    pdfUrl: "/assets/dummyPDFSNIP.jpg",
+    pdfUrl: "/assets/dummyPDF.jpg",
+    snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
+    description:
+      "This is a longer description of the product that includes some of the most important information about the product in question.",
+    blurb: "Short Blurb",
+    price: 4,
   },
 ];
 

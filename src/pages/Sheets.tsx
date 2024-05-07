@@ -1,7 +1,13 @@
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Sheet } from "../../shared/interfaces";
-
-
 
 const Sheets: React.FC = () => {
   const [sheets, setSheets] = useState([] as Sheet[]);
@@ -14,21 +20,52 @@ const Sheets: React.FC = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap xs-mw-95 md-mw-75 justify-content-center">
+    <div style={{margin: "2rem"}}>
+    <div className="d-flex flex-wrap justify-content-center" >
       {sheets.map((sheet, index) => (
-        // <div key={index}>
-        //   <h2>{sheet.title}</h2>
-        //   <p>{sheet.subject}</p>
-        // </div>
-        <div className="card m-3" style={{width: "18rem"}}>
-          <img className="card-img-top" src={`${sheet.pdfUrl}`} alt="PDF sheet"></img>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="/cart" className="btn btn-primary">Buy Now</a>
-          </div>
-        </div>
+        <Card style={{ minWidth: 300, maxWidth: 345, margin: "1rem" }} key={index}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="PDF sheet"
+              height="140"
+              image={sheet.snippedImagePath}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Card title
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <Button
+            size="medium"
+            variant="contained"
+            color="secondary"
+            href="/cart"
+            style={{
+              margin: "1rem",
+            }}
+          >
+            Add to Cart
+          </Button>
+          <Button
+            size="medium"
+            variant="contained"
+            color="secondary"
+            href={`/sheets/${sheet.id}`}
+            style={{
+              margin: ".5rem",
+            }}
+          >
+            Details
+          </Button>
+        </Card>
       ))}
+    </div>
     </div>
   );
 };
