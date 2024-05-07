@@ -1,96 +1,55 @@
-import React from "react";
 import {
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
   Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
 } from "@material-ui/core";
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import { BsFillTrash3Fill } from "react-icons/bs";
+import React from "react";
+import { BsChevronRight } from "react-icons/bs";
 import { Sheet } from "../../shared/interfaces";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 const Cart: React.FC = () => {
-  const products: Sheet[] = [
-    {
-      id: 1,
-      title: "Test Sheet",
-      type: "Test Type",
-      subject: "Test Subject",
-      level: "Test Level",
-      language: "Test Language",
-      pdfUrl: "/assets/dummyPDFSNIP.jpg",
-      snippedImagePath: "/assets/dummyPDFSNIP.jpg",
-      createdDate: new Date(),
-      updatedDate: new Date(),
-      description:
-        "This is a longer description of the product that includes some of the most important information about the product in question.",
-      blurb: "Short Blurb",
-      price: 4,
-    },
-    {
-      id: 2,
-      title: "Test Sheet2",
-      type: "Test Type2",
-      subject: "Test Subject2",
-      level: "Test Level2",
-      language: "Test Language2",
-      pdfUrl: "/assets/dummyPDFSNIP.jpg",
-      snippedImagePath: "/assets/dummyPDFSNIP.jpg",
-      createdDate: new Date(),
-      updatedDate: new Date(),
-      description:
-        "This is a longer description of the product that includes some of the most important information about the product in question.",
-      blurb: "Short Blurb",
-      price: 4,
-    },
-    {
-      id: 3,
-      title: "Test Sheet3",
-      type: "Test Type3",
-      subject: "Test Subject3",
-      level: "Test Level3",
-      language: "Test Language3",
-      pdfUrl: "/assets/dummyPDFSNIP.jpg",
-      snippedImagePath: "/assets/dummyPDFSNIP.jpg",
-      createdDate: new Date(),
-      updatedDate: new Date(),
-      description:
-        "This is a longer description of the product that includes some of the most important information about the product in question.",
-      blurb: "Short Blurb",
-      price: 4,
-    },
-  ];
-  const subtotal = products.reduce((acc, curr) => {
-    return acc + curr.price;
-  }, 0);
+  const { sheetsInCart, removeSheet, numOfSheets, subtotal } =
+    useShoppingCart();
+
+  // const subtotal = sheets.reduce((acc, curr) => {
+  //   return acc + curr.price;
+  // }, 0);
 
   return (
-      <Grid container xs={11} md={9}  >
-        <Grid item xs={12} md={8}>
-          {products.map((product: Sheet, index: number) => (
+    <Grid
+      container
+      justifyContent="center"
+      xs={12}
+      className="MuiGrid-wrap-xs-wrap-reverse"
+    >
+      {sheetsInCart.length > 0 && (
+        <Grid item xs={12} md={7} justifyContent="center">
+          {sheetsInCart.map((sheet: Sheet, index: number) => (
             <Card key={index} style={{ margin: "1rem" }}>
               <Grid container>
                 <Grid item xs={12} md={4}>
                   <CardMedia
                     component="img"
-                    alt={product.title}
+                    alt={sheet.title}
                     height="140"
-                    image={product.snippedImagePath}
+                    image={sheet.snippedImagePath}
                   />
                 </Grid>
                 <Grid item xs={12} md={8}>
                   <CardContent>
-                    <Typography variant="h5">{product.title}</Typography>
+                    <Typography variant="h5">{sheet.title}</Typography>
                     <Typography variant="body2" color="textSecondary">
-                      {product.description}
+                      {sheet.description}
                     </Typography>
-                    <Typography variant="h6">${product.price}</Typography>
+                    <Typography variant="h6">${sheet.price}</Typography>
                     <Button
-                      // startIcon={<BsFillTrash3Fill />}
                       variant="text"
+                      onClick={() => removeSheet(sheet.id)}
                     >
                       Remove
                     </Button>
@@ -100,23 +59,56 @@ const Cart: React.FC = () => {
             </Card>
           ))}
         </Grid>
-        <Grid item xs={12} md={4}>
+      )}
+      {sheetsInCart.length > 0 && (
+        <Grid item xs={12} md={5}>
           <Card style={{ margin: "1rem" }}>
             <CardContent>
               <Typography variant="h5">Order Summary</Typography>
               <Typography variant="body2" color="textSecondary">
-                {products.length} Items
+                {numOfSheets()} Items
               </Typography>
-              <Typography variant="h6">Subtotal: ${subtotal}</Typography>
-              <Box display="flex" justifyContent="flex-end" marginTop="1rem">
-                <Button variant="contained" color="secondary">
+              <Typography variant="h6">Subtotal: ${subtotal()}</Typography>
+              <Box display="flex" flexWrap="nowrap" marginTop="1rem">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ marginRight: ".5rem" }}
+                >
                   Check Out
+                </Button>
+                <Button variant="text" size="small" href="/sheets">
+                  Continue Shopping
                 </Button>
               </Box>
             </CardContent>
           </Card>
         </Grid>
-      </Grid>
+      )}
+      {sheetsInCart.length === 0 && (
+        <Grid
+          container
+          direction="column"
+          xs={12}
+          justifyContent="center"
+          alignItems="center"
+          style={{ marginTop: "3rem" }}
+        >
+          <Typography variant="h4" style={{ marginBottom: "2rem" }}>
+            Your cart is empty
+          </Typography>
+          <Button
+            variant="contained"
+            size="large"
+            color="secondary"
+            href="/sheets"
+          >
+            Add some sheets
+            <BsChevronRight />
+          </Button>
+        </Grid>
+      )}
+    </Grid>
   );
 };
 

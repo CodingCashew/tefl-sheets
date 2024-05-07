@@ -72,4 +72,25 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
   // );
 };
 
+sheetsController.getSheet = (req: Request, res: Response, next: any): void => {
+  const id = req.params.id;
+
+  console.log('id in controller: ', id);
+  const sheet = temporarySheets.find((sheet) => sheet.id === Number(id));
+  // const queryString = `SELECT * FROM sheets where id=${id};`;
+
+  // db.query(queryString)
+  //   .then((data) => {
+  res.locals.sheet = sheet;
+  // res.locals.sheets = data.rows;
+  return next();
+  // })
+  // .catch((err) =>
+  //   next({
+  //     log: `Error in sheetsController.getSheets: ${err}`,
+  //     message: { err: "Error getting sheets" },
+  //   })
+  // );
+};
+
 module.exports = sheetsController;

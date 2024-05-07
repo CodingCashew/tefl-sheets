@@ -25,6 +25,14 @@ app.get(
   }
 );
 
+app.get(
+  "/getSheet/:id",
+  sheetsController.getSheet,
+  (req: Request, res: Response) => {
+    return res.status(200).json(res.locals.sheet);
+  }
+);
+
 // requests to an unknown route
 app.use("*", (req: Request, res: Response) =>
   res.status(404).send("The page you are looking for does not exist.")

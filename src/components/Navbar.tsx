@@ -7,9 +7,12 @@ import {
   Button,
   Link,
 } from "@material-ui/core";
+import Badge from "@mui/material/Badge";
 import { BsCart3, BsFileEarmarkTextFill } from "react-icons/bs";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
-const Contact: React.FC = () => {
+const Navbar: React.FC = () => {
+  const { numOfSheets } = useShoppingCart();
   return (
     <div>
       <AppBar position="static">
@@ -37,7 +40,9 @@ const Contact: React.FC = () => {
               href="/cart"
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              <BsCart3 size="1.2em" />
+              <Badge badgeContent={numOfSheets()} color='success'>
+                <BsCart3 size="1.5em" />
+              </Badge>
             </Link>
           </Button>
         </Toolbar>
@@ -46,4 +51,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default Navbar;

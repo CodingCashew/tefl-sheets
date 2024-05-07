@@ -6,6 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 // import reportWebVitals from './reportWebVitals.js';
 
 const theme = createTheme({
@@ -24,9 +25,11 @@ const root = (ReactDOM as any).createRoot(
 );
 root.render(
   <ThemeProvider theme={theme}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ShoppingCartProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ShoppingCartProvider>
   </ThemeProvider>
 );
 

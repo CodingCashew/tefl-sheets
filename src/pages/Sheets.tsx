@@ -8,9 +8,11 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Sheet } from "../../shared/interfaces";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 const Sheets: React.FC = () => {
   const [sheets, setSheets] = useState([] as Sheet[]);
+  const { addSheet } = useShoppingCart();
 
   useEffect(() => {
     fetch("/getSheets")
@@ -45,10 +47,10 @@ const Sheets: React.FC = () => {
             size="medium"
             variant="contained"
             color="secondary"
-            href="/cart"
             style={{
               margin: "1rem",
             }}
+            onClick={() => addSheet(sheet)}
           >
             Add to Cart
           </Button>
