@@ -1,11 +1,126 @@
-import React from 'react';
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { BsChevronRight } from "react-icons/bs";
+
+const initialValues = {
+  name: "",
+  email: "",
+  message: "",
+};
 
 const Contact: React.FC = () => {
+  const [values, setValues] = useState(initialValues);
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_jo3giqp",
+        "template_idwgknc",
+        e.target,
+        "lfS3piNP6e7SskUcv"
+      )
+      .then((response: any) => {
+        console.log("SUCCESS!", response.status, response.text);
+        alert("Message Submitted");
+        setValues({
+          name: "",
+          email: "",
+          message: "",
+        });
+      })
+      .catch((err: any) => {
+        console.log("FAILED TO SEND EMAIL. Error: ", err);
+      });
+  };
   return (
-    <div>
-      <h1>Welcome to the Contact Page</h1>
-    </div>
+    <Container>
+      <Box
+        //  component="form"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+
+        style={{ minHeight: "100vh" }}
+      >
+        <form onSubmit={sendEmail}>
+          <Grid
+            container
+            direction="column"
+            spacing={3}
+            style={{ margin: ".5rem", marginTop: "1rem" }}
+          >
+            <Grid item xs={11} md={7}>
+              <Typography variant="h5" color="primary">Have any inquiries, feedback, or suggestions?</Typography>
+            </Grid>
+            <Grid item xs={11} md={7}>
+              <Typography variant="h6">We would love to hear from you.</Typography>
+            </Grid>
+            <Grid item xs={11} md={7}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Name"
+                name="name"
+                value={values.name}
+                color="primary"
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+            <Grid item  xs={11} md={7}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={values.email}
+                margin="normal"
+                color="primary"
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+            <Grid item  xs={11} md={7}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Message"
+                name="message"
+                value={values.message}
+                color="primary"
+                multiline
+                rows={5}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+            <Grid item>
+              <Button variant="contained" type="submit" color="secondary">
+                Submit Message <BsChevronRight />
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Box>
+    </Container>
   );
-}
+};
 
 export default Contact;

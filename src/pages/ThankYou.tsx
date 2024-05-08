@@ -1,4 +1,4 @@
-import { Box, Button, Container, Typography } from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
 import React from "react";
 
 const ThankYou: React.FC = () => {
@@ -14,7 +14,9 @@ const ThankYou: React.FC = () => {
         We've sent an email to your registered email address with the PDF you
         ordered attached. Please check your email.
       </Typography>
-      <div style={{display: "flex", justifyContent: "center", marginTop: "1rem"}}>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}
+      >
         <Button variant="contained" color="secondary" size="medium" href="/">
           Home
         </Button>
