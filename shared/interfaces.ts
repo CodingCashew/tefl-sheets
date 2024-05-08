@@ -10,9 +10,10 @@ export interface Sheet {
   id: number;
   title: string;
   type: string;
-  subject: string;
+  tags: string[];
   level: string;
-  language: string;
+  languages: string[];
+  pdfVersions: string[];
   pdfUrl: string;
   snippedImagePath: string;
   createdDate: Date;

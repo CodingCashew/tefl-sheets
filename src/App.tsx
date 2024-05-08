@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Sheets from "./pages/Sheets";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import ThankYou from "./pages/ThankYou";
 import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
 import Sheet from "./pages/Sheet";
@@ -18,7 +18,7 @@ const App: React.FC = () => {
         <Route path="/sheets" element={<Sheets />} />
         <Route path="/sheets/:sheetId" element={<Sheet />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>

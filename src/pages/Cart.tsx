@@ -30,7 +30,7 @@ const Cart: React.FC = () => {
       {sheetsInCart.length > 0 && (
         <Grid item xs={12} md={7} justifyContent="center">
           {sheetsInCart.map((sheet: Sheet, index: number) => (
-            <Card key={index} style={{ margin: "1rem" }}>
+            <Card key={index} style={{ margin: "1rem"  }} raised={true}>
               <Grid container>
                 <Grid item xs={12} md={4}>
                   <CardMedia

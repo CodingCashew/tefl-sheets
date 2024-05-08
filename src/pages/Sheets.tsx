@@ -4,8 +4,13 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Grid,
+  IconButton,
+  InputBase,
+  Paper,
   Typography,
 } from "@material-ui/core";
+import { BsSearch } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 import { Sheet } from "../../shared/interfaces";
 import { useShoppingCart } from "../context/ShoppingCartContext";
@@ -13,6 +18,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 const Sheets: React.FC = () => {
   const [sheets, setSheets] = useState([] as Sheet[]);
   const { addSheet } = useShoppingCart();
+  const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
     fetch("/getSheets")
@@ -21,53 +27,118 @@ const Sheets: React.FC = () => {
       .catch((error) => console.error("Error:", error));
   }, []);
 
+  const searchSheets = (() => {
+    if (!searchParams) {
+      fetch("/getSheets")
+        .then((response) => response.json())
+        .then((data) => setSheets(data))
+        .catch((error) => console.error("Error:", error));
+      return;
+    }
+    fetch(`/getSheets?search=${searchParams}`)
+      .then((response) => response.json())
+      .then((data) => setSheets(data))
+      .catch((error) => console.error("Error:", error));
+  })
+
   return (
-    <div style={{margin: "2rem"}}>
-    <div className="d-flex flex-wrap justify-content-center" >
-      {sheets.map((sheet, index) => (
-        <Card style={{ minWidth: 300, maxWidth: 345, margin: "1rem" }} key={index}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="PDF sheet"
-              height="140"
-              image={sheet.snippedImagePath}
+    <div style={{ margin: "2rem" }}>
+      <Grid
+        container
+        justifyContent="center"
+        style={{ marginTop: "1rem", marginBottom: "1rem" }}
+      >
+        <Grid item xs={12} sm={9} md={6}>
+          <Paper
+            // component="form"
+            style={{
+              padding: "2px 4px",
+              display: "flex",
+            }}
+          >
+            <InputBase
+              style={{ marginLeft: 1, flex: 1 }}
+              placeholder="Search Sheets"
+              inputProps={{ "aria-label": "search sheets" }}
+              value={searchParams}
+              onChange={(e) => setSearchParams(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  searchSheets();
+                }
+              }}
             />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Card title
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <Button
-            size="medium"
-            variant="contained"
-            color="secondary"
-            style={{
-              margin: "1rem",
-            }}
-            onClick={() => addSheet(sheet)}
+            <IconButton
+              type="button"
+              style={{ padding: "10px" }}
+              aria-label="search"
+              onClick={() => {
+                searchSheets()
+              }}
+            >
+              <BsSearch />
+            </IconButton>
+          </Paper>
+        </Grid>
+      </Grid>
+      <div className="d-flex flex-wrap justify-content-center">
+        {sheets.map((sheet, index) => (
+          <Card
+            style={{ minWidth: 300, maxWidth: 345, margin: "1rem" }}
+            key={index}
           >
-            Add to Cart
-          </Button>
-          <Button
-            size="medium"
-            variant="contained"
-            color="secondary"
-            href={`/sheets/${sheet.id}`}
-            style={{
-              margin: ".5rem",
-            }}
-          >
-            Details
-          </Button>
-        </Card>
-      ))}
-    </div>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="PDF sheet"
+                height="140"
+                image={sheet.snippedImagePath}
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  style={{ minHeight: "70px" }}
+                >
+                  {sheet.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  style={{ minHeight: "40px" }}
+                >
+                  {sheet.blurb}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <Button
+              size="medium"
+              variant="contained"
+              color="secondary"
+              style={{
+                marginLeft: "1rem",
+                marginBottom: "1rem",
+              }}
+              onClick={() => addSheet(sheet)}
+            >
+              Add to Cart
+            </Button>
+            <Button
+              size="medium"
+              variant="contained"
+              color="secondary"
+              href={`/sheets/${sheet.id}`}
+              style={{
+                marginLeft: "1rem",
+                marginBottom: "1rem",
+              }}
+            >
+              Details
+            </Button>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

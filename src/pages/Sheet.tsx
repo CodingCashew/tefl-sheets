@@ -11,7 +11,6 @@ const Sheet: React.FC = () => {
   const { addSheet } = useShoppingCart();
 
   useEffect(() => {
-    console.log("id in useEffect: ", sheetId);
     fetch(`/getSheet/${sheetId}`)
       .then((response) => response.json())
       .then((data) => setSheet(data))

@@ -5,62 +5,86 @@ import { Sheet, SheetsController } from "../shared/interfaces";
 const temporarySheets: Sheet[] = [
   {
     id: 1,
-    title: "Test Sheet",
-    type: "Test Type",
-    subject: "Test Subject",
-    level: "Test Level",
-    language: "Test Language",
+    title: "Present Progressive Worksheet",
+    type: "Worksheet",
+    tags: ["Present Progressive"],
+    level: "Low Intermediate",
+    languages: ["British English"],
+    pdfVersions: ["standard"],
     pdfUrl: "/assets/dummyPDF.jpg",
     snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
     description:
-      "This is a longer description of the product that includes some of the most important information about the product in question.",
-    blurb: "Short Blurb",
+      "This worksheet is designed to help students practice the present progressive tense. It includes a variety of exercises that will help students understand the tense and use it correctly. The worksheet is suitable for low-intermediate students.",
+    blurb: "Practice the present progressive with this worksheet.",
     price: 4,
   },
   {
     id: 2,
-    title: "Test Sheet2",
-    type: "Test Type2",
-    subject: "Test Subject2",
-    level: "Test Level2",
-    language: "Test Language2",
+    title: "Interviewing Vocabulary Exam",
+    type: "Exam",
+    tags: ["Interviewing Vocabulary", "Business English"],
+    level: "Advanced",
+    languages: ["American English"],
+    pdfVersions: ["standard"],
     pdfUrl: "/assets/dummyPDF.jpg",
     snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
     description:
-      "This is a longer description of the product that includes some of the most important information about the product in question.",
-    blurb: "Short Blurb",
-    price: 4,
+      "This exam is designed to test students' knowledge of vocabulary related to job interviews. It includes a variety of questions that will challenge students to demonstrate their understanding of the vocabulary. The exam is suitable for advanced students.",
+    blurb: "Practice interviewing vocabulary with this exam.",
+    price: 5,
   },
   {
     id: 3,
-    title: "Test Sheet3",
-    type: "Test Type3",
-    subject: "Test Subject3",
-    level: "Test Level3",
-    language: "Test Language3",
+    title: "Fun Time-Telling Adventure Quiz",
+    type: "Quiz",
+    tags: ["Telling Time"],
+    level: "Beginner",
+    languages: ["American English"],
+    pdfVersions: ["standard"],
     pdfUrl: "/assets/dummyPDF.jpg",
     snippedImagePath: "/assets/dummyPDFSNIP.jpg",
     createdDate: new Date(),
     updatedDate: new Date(),
     description:
-      "This is a longer description of the product that includes some of the most important information about the product in question.",
-    blurb: "Short Blurb",
-    price: 4,
+      "This quiz is designed to help students practice telling time. It includes a variety of questions that will challenge students to read and understand the time. The quiz is suitable for beginner students.",
+    blurb: "Practice telling time with this quiz.",
+    price: 3,
   },
 ];
+
+const hasSearchParam = (sheet: Sheet, searchParams = ""): boolean => {
+  const arrayOfKeywords = searchParams.split(" ");
+  for (let i = 0; i < arrayOfKeywords.length; i++) {
+    for (let j = 0; j < sheet.tags.length; j++) {
+      if (
+        sheet.tags[j].toLowerCase().includes(arrayOfKeywords[i].toLowerCase())
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
 
 export const sheetsController: SheetsController = {};
 
 sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
+  const searchParams = req.query.search as string;
+
   // const queryString = `SELECT * FROM sheets;`;
 
   // db.query(queryString)
   //   .then((data) => {
-  res.locals.sheets = temporarySheets;
+
+  const filteredSheets = temporarySheets.filter((sheet) => {
+    return hasSearchParam(sheet, searchParams);
+  });
+
+  res.locals.sheets = filteredSheets;
   // res.locals.sheets = data.rows;
   return next();
   // })
@@ -75,7 +99,7 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
 sheetsController.getSheet = (req: Request, res: Response, next: any): void => {
   const id = req.params.id;
 
-  console.log('id in controller: ', id);
+  console.log("id in controller: ", id);
   const sheet = temporarySheets.find((sheet) => sheet.id === Number(id));
   // const queryString = `SELECT * FROM sheets where id=${id};`;
 
