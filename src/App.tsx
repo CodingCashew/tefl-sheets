@@ -7,6 +7,7 @@ import ThankYou from "./pages/ThankYou";
 import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
 import Sheet from "./pages/Sheet";
+import Footer from "./components/Footer";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

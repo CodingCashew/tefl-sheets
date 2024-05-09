@@ -42,7 +42,7 @@ const Sheets: React.FC = () => {
   })
 
   return (
-    <div style={{ margin: "2rem" }}>
+    <div style={{ margin: "2rem", minHeight: "100vh"}}>
       <Grid
         container
         justifyContent="center"
