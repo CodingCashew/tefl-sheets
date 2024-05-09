@@ -19,7 +19,7 @@ const theme = createTheme({
     secondary: {
       light: lime['A400'],
       main: lightGreen[700],
-      dark: lightGreen[900],
+      dark: lightGreen[800],
     },
   },
 });
