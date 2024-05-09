@@ -14,7 +14,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 const Navbar: React.FC = () => {
   const { numOfSheets } = useShoppingCart();
   return (
-    <div>
+    <div style={{position: "fixed", width: "100%", zIndex: "1000", top: 0}}>
       <AppBar position="static">
         <Toolbar>
           <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>

@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@material-ui/core/styles";
-import { cyan, lightGreen } from "@mui/material/colors";
+import { cyan, lightGreen, lime } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
@@ -12,10 +12,14 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 const theme = createTheme({
   palette: {
     primary: {
+      light: cyan[500],
       main: cyan[700],
+      dark: cyan[900],
     },
     secondary: {
+      light: lime['A400'],
       main: lightGreen[700],
+      dark: lightGreen[900],
     },
   },
 });

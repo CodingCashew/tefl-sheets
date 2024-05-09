@@ -3,7 +3,7 @@ import React from "react";
 
 const ThankYou: React.FC = () => {
   return (
-    <Container maxWidth="sm" style={{ marginTop: "3rem" }}>
+    <Container maxWidth="sm" style={{ marginTop: "8rem", minHeight: "100vh" }}>
       <Typography variant="h2" align="center" gutterBottom>
         Thank You!
       </Typography>

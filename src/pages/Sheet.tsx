@@ -18,7 +18,7 @@ const Sheet: React.FC = () => {
   }, [sheetId]);
 
   return (
-    <Grid container spacing={3} xs={11} md={12} style={{ margin: "1rem" }}>
+    <Grid container spacing={3} xs={11} md={12} style={{ margin: "1rem", marginTop: "5rem"}}>
       <Grid item xs={12} sm={10} md={6} lg={5} xl={4}>
         <img alt={sheet.title} width="100%" src={sheet.snippedImagePath} />
       </Grid>

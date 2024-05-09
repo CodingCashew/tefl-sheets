@@ -22,7 +22,7 @@ const Cart: React.FC = () => {
       justifyContent="center"
       xs={12}
       className="MuiGrid-wrap-xs-wrap-reverse"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh", marginTop: "5rem" }}
     >
       {sheetsInCart.length > 0 && (
         <Grid item xs={12} md={7} justifyContent="center">
