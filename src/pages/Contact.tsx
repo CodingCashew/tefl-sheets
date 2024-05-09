@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
 import {
   Box,
   Button,
@@ -8,7 +6,9 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import React, { useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
+import emailjs from "@emailjs/browser";
 
 const initialValues = {
   name: "",
@@ -30,10 +30,10 @@ const Contact: React.FC = () => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_jo3giqp",
-        "template_idwgknc",
+        "service_yllui2c",
+        "template_er60uhs",
         e.target,
-        "lfS3piNP6e7SskUcv"
+        "QienPfDBNCjDSmqKi"
       )
       .then((response: any) => {
         console.log("SUCCESS!", response.status, response.text);
@@ -45,7 +45,7 @@ const Contact: React.FC = () => {
         });
       })
       .catch((err: any) => {
-        console.log("FAILED TO SEND EMAIL. Error: ", err);
+        console.log("FAILED...", err);
       });
   };
   return (
@@ -55,7 +55,6 @@ const Contact: React.FC = () => {
         display="flex"
         flexDirection="column"
         justifyContent="center"
-
         style={{ minHeight: "100vh" }}
       >
         <form onSubmit={sendEmail}>
@@ -66,10 +65,14 @@ const Contact: React.FC = () => {
             style={{ margin: ".5rem", marginTop: "1rem" }}
           >
             <Grid item xs={11} md={7}>
-              <Typography variant="h5" color="primary">Have any inquiries, feedback, or suggestions?</Typography>
+              <Typography variant="h5" color="primary">
+                Have any inquiries, feedback, or suggestions?
+              </Typography>
             </Grid>
             <Grid item xs={11} md={7}>
-              <Typography variant="h6">We would love to hear from you.</Typography>
+              <Typography variant="h6">
+                We would love to hear from you.
+              </Typography>
             </Grid>
             <Grid item xs={11} md={7}>
               <TextField
@@ -83,7 +86,7 @@ const Contact: React.FC = () => {
                 required
               />
             </Grid>
-            <Grid item  xs={11} md={7}>
+            <Grid item xs={11} md={7}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -97,7 +100,7 @@ const Contact: React.FC = () => {
                 required
               />
             </Grid>
-            <Grid item  xs={11} md={7}>
+            <Grid item xs={11} md={7}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -106,7 +109,7 @@ const Contact: React.FC = () => {
                 value={values.message}
                 color="primary"
                 multiline
-                rows={5}
+                minRows={5}
                 onChange={handleChange}
                 required
               />

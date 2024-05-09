@@ -1,16 +1,28 @@
-import React from 'react';
-import { Box, Container, Typography } from '@material-ui/core';
+import React from "react";
+import { Box, Container, Typography, Button } from "@material-ui/core";
 
 const Home: React.FC = () => {
   return (
-    <Box width="100%">
-      <Container maxWidth="lg" style={{ display: 'flex', backgroundColor: 'green' }}>
-        <Typography variant="h3" style={{ backgroundColor: 'blue' }}>
-          Welcome to the Home Page
+    <Container>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Typography variant="h2" align="center" gutterBottom>
+          Welcome to Our Website!
         </Typography>
-      </Container>
-    </Box>
+        <Typography variant="h5" align="center" gutterBottom>
+          We provide the best service for you.
+        </Typography>
+        <Button variant="contained" color="primary">
+          Learn More
+        </Button>
+      </Box>
+    </Container>
   );
-}
+};
 
 export default Home;
