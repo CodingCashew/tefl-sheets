@@ -66,6 +66,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     <ShoppingCartContext.Provider
       value={{
         sheetsInCart,
+        setSheetsInCart,
         addSheet,
         removeSheet,
         resetCart,

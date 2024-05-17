@@ -33,6 +33,7 @@ export type ShoppingCartProviderProps = {
 
 export type ShoppingCartContextType = {
   sheetsInCart: Sheet[];
+  setSheetsInCart: (sheets: Sheet[]) => void;
   addSheet: (courseInfo: Sheet) => void;
   removeSheet: (id: number) => void;
   resetCart: () => void;

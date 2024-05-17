@@ -7,14 +7,48 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import {
+  PayPalButtons,
+  PayPalScriptProvider,
+  ReactPayPalScriptOptions,
+} from "@paypal/react-paypal-js";
 import React from "react";
-import { BsChevronRight } from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { Sheet } from "../../shared/interfaces";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useNavigate } from 'react-router-dom';
 
 const Cart: React.FC = () => {
-  const { sheetsInCart, removeSheet, numOfSheets, subtotal } =
+  const { sheetsInCart, setSheetsInCart, removeSheet, numOfSheets, subtotal } =
     useShoppingCart();
+    const navigate = useNavigate()
+  // const [message, setMessage] = React.useState<string>("");
+
+  const initialOptions: ReactPayPalScriptOptions = {
+    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || "",
+  };
+
+  const createOrder = (data: any, actions: any) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: `${subtotal()}`,
+          },
+        },
+      ],
+    });
+  };
+
+  const onApprove = (data: any, actions: any) => {
+    return actions.order.capture().then((details: any) => {
+      setSheetsInCart([]);
+      navigate('/thank-you');
+      
+    }).catch((err: any) => {
+      console.error(err);
+    });
+  };
 
   return (
     <Grid
@@ -26,9 +60,17 @@ const Cart: React.FC = () => {
     >
       {sheetsInCart.length > 0 && (
         <Grid item xs={12} md={7}>
+          <Button
+            variant="text"
+            size="small"
+            href="/sheets"
+            style={{ margin: ".5rem" }}
+          >
+            <BsChevronLeft /> Continue Shopping
+          </Button>
           {sheetsInCart.map((sheet: Sheet, index: number) => (
             <Card key={index} style={{ margin: "1rem" }} raised={true}>
-              <Grid container>
+              <Grid container style={{ display: "flex", alignItems: "center" }}>
                 <Grid item xs={12} md={4}>
                   <CardMedia
                     component="img"
@@ -67,16 +109,19 @@ const Cart: React.FC = () => {
               </Typography>
               <Typography variant="h6">Subtotal: ${subtotal()}</Typography>
               <Box display="flex" flexWrap="nowrap" marginTop="1rem">
-                <Button
+                <PayPalScriptProvider options={initialOptions}>
+                  <PayPalButtons
+                    createOrder={createOrder}
+                    onApprove={onApprove}
+                  />
+                </PayPalScriptProvider>
+                {/* <Button
                   variant="contained"
                   color="secondary"
                   style={{ marginRight: ".5rem" }}
                 >
                   Check Out
-                </Button>
-                <Button variant="text" size="small" href="/sheets">
-                  Continue Shopping
-                </Button>
+                </Button> */}
                 {/* <Message content={message} /> */}
               </Box>
             </CardContent>
@@ -87,23 +132,24 @@ const Cart: React.FC = () => {
         <Grid
           container
           direction="column"
-          // xs={12}
           justifyContent="center"
           alignItems="center"
           style={{ marginTop: "3rem" }}
         >
-          <Typography variant="h4" style={{ marginBottom: "2rem" }}>
-            Your cart is empty
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            href="/sheets"
-          >
-            Add some sheets
-            <BsChevronRight />
-          </Button>
+          <Grid item xs={12}>
+            <Typography variant="h4" style={{ marginBottom: "2rem" }}>
+              Your cart is empty
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              href="/sheets"
+            >
+              Add some sheets
+              <BsChevronRight />
+            </Button>
+          </Grid>
         </Grid>
       )}
     </Grid>
