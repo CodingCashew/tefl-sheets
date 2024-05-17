@@ -1,19 +1,27 @@
 import { Box, Button, Container, Grid, Typography } from "@material-ui/core";
+import { grey } from "@material-ui/core/colors";
 import useTheme from "@material-ui/core/styles/useTheme";
-import React from "react";
+import React, { useState } from "react";
+import { BsChevronRight } from "react-icons/bs";
 import { BsCupHotFill } from "react-icons/bs";
+import EmailDialog from "../components/EmailDialog";
 
 const Home: React.FC = () => {
   const theme = useTheme();
   const primary = theme.palette.primary;
   const secondary = theme.palette.secondary;
+  const [open, setOpen] = useState<boolean>(false);
+
+  const openMailingListDialog = () => {
+    setOpen(open ? false : true);
+  };
   return (
     <Container disableGutters maxWidth={false} style={{ marginTop: "5rem" }}>
       {/* row 1 */}
       <Box
         style={{
           minHeight: "90vh",
-          width: "100vw",
+          maxWidth: "100vw",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -45,7 +53,7 @@ const Home: React.FC = () => {
         <Typography
           variant="h2"
           align="left"
-          style={{ color: secondary.light, fontWeight: "bold" }}
+          style={{ color: primary.light, fontWeight: "bold" }}
           gutterBottom
         >
           Ignite Your Classroom
@@ -71,11 +79,11 @@ const Home: React.FC = () => {
           Select Your Sheets
         </Button>
       </Box>
-          {/* row 2a */}
-          <Box
+      {/* row 2 */}
+      <Box
         style={{
           minHeight: "100vh",
-          width: "100vw",
+          maxWidth: "100vw",
           backgroundColor: "white",
           padding: "1rem",
           display: "flex",
@@ -96,13 +104,12 @@ const Home: React.FC = () => {
         >
           <Grid
             item
-            xs={12}
-            md={6}
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              maxWidth: "550px",
             }}
           >
             <img
@@ -110,12 +117,14 @@ const Home: React.FC = () => {
               style={{
                 marginTop: "2rem",
                 marginBottom: ".5rem",
+                objectFit: "cover",
                 boxShadow: "0 0 10px 5px #ccc",
+                // minWidth:"100%",
+                maxWidth: "98%",
               }}
-              height="350"
               alt="classroom instruction"
             />
-            </Grid>
+          </Grid>
           <Grid
             item
             xs={12}
@@ -133,7 +142,11 @@ const Home: React.FC = () => {
             <Typography
               variant="h3"
               align="center"
-              style={{ color: primary.light, marginBottom: "1rem", marginTop: "1rem" }}
+              style={{
+                color: primary.light,
+                marginBottom: "1rem",
+                marginTop: "1rem",
+              }}
             >
               at TEFL Sheets, we understand
             </Typography>
@@ -142,8 +155,8 @@ const Home: React.FC = () => {
             </Typography>
           </Grid>
         </Grid>
-        </Box>
-      {/* row 2b */}
+      </Box>
+      {/* row 3 */}
       <Box
         display="flex"
         flexDirection="column"
@@ -151,9 +164,9 @@ const Home: React.FC = () => {
         justifyContent="center"
         style={{
           minHeight: "120vh",
-          width: "100vw",
+          maxWidth: "100vw",
           backgroundColor: primary.main,
-          padding: "1rem",
+          // padding: "1rem",
         }}
       >
         <Grid
@@ -162,7 +175,7 @@ const Home: React.FC = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-around",
-            padding: "1rem",
+            // padding: "1rem",
           }}
         >
           <Grid
@@ -253,7 +266,7 @@ const Home: React.FC = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-around",
-            padding: "1rem",
+            // padding: "1rem",
           }}
         >
           <Grid
@@ -345,11 +358,11 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* row 3 */}
+      {/* row 4 */}
       <Box
         style={{
           minHeight: "100vh",
-          width: "100vw",
+          maxWidth: "100vw",
           backgroundColor: "white",
           padding: "1rem",
           display: "flex",
@@ -403,7 +416,7 @@ const Home: React.FC = () => {
             flexWrap: "wrap",
             justifyContent: "space-around",
             alignItems: "center",
-            padding: "1rem",
+            // padding: "1rem",
           }}
         >
           <Grid
@@ -518,7 +531,7 @@ const Home: React.FC = () => {
             </Typography>
           </Grid>
         </Grid>
-          <Button
+        <Button
           variant="contained"
           size="large"
           href="/sheets"
@@ -532,34 +545,137 @@ const Home: React.FC = () => {
           Find Sheets Now
         </Button>
       </Box>
-      {/* row 4 */}
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{
-          minHeight: "100vh",
-          width: "100vw",
-          backgroundColor: secondary.main,
-        }}
-      >
-        <Typography variant="h2" align="center" gutterBottom>
-          This is thing 4
-        </Typography>
-      </Box>
       {/* row 5 */}
       <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh", width: "100vw", backgroundColor: "white" }}
+        style={{
+          minHeight: "100vh",
+          maxWidth: "100vw",
+          backgroundColor: grey[800],
+          // padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Typography variant="h2" align="center" gutterBottom>
-          This is thing 5
+        <Grid
+          container
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "20vh",
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            md={6}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              justifyContent: "center",
+            }}
+          >
+            {/* <Typography variant="h3" align="center">
+              something about their plight
+            </Typography> */}
+            <Typography
+              variant="h3"
+              align="center"
+              style={{
+                color: "white",
+                marginBottom: "1rem",
+                marginTop: "1rem",
+              }}
+            >
+              Don't be a failure/waste a bunch of time
+            </Typography>
+            {/* <Typography variant="h3" align="center">
+              that's why we....
+            </Typography> */}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src="/assets/classroom-kenny-eliason-zFSo6bnZJTw-unsplash.jpg"
+              style={{
+                padding: "2rem",
+                objectFit: "cover",
+                maxWidth: "97%",
+              }}
+              alt="classroom instruction"
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      {/* row 6 */}
+      <Box
+        style={{
+          minHeight: "100vh",
+          maxWidth: "100vw",
+          backgroundColor: secondary.main,
+          padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          variant="h2"
+          align="center"
+          gutterBottom
+          style={{ color: "white" }}
+        >
+          Succeed by using TEFL Sheets
         </Typography>
       </Box>
+      {/* row 7 */}
+      <Box
+        style={{
+          minHeight: "70vh",
+          maxWidth: "100vw",
+          backgroundColor: "white",
+          padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h3" align="center" gutterBottom>
+          Get our FREE conversation question sheet!
+        </Typography>
+        <Grid item xs={11} sm={10} md={6} lg={5} xl={3}>
+        <img alt="sheet" width="100%" src="/assets/dummyPDFSNIP.jpg" />
+      </Grid>
+        <Button
+          variant="contained"
+          size="large"
+          style={{
+            backgroundColor: primary.main,
+            color: "white",
+            marginTop: "3rem",
+            marginBottom: "1rem",
+          }}
+          onClick={openMailingListDialog}
+        >
+          Get the sheet <BsChevronRight />
+        </Button>
+      </Box>
+      <EmailDialog open={open} setOpen={setOpen} />
     </Container>
   );
 };

@@ -3,8 +3,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = 8080;
+const axios = require('axios');
 require("dotenv").config();
+
 const sheetsController = require("./sheetsController");
+const emailController = require("./emailController");
 
 // parse incoming requests
 app.use(express.json());
@@ -30,6 +33,22 @@ app.get(
   sheetsController.getSheet,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.sheet);
+  }
+);
+
+app.post(
+  "/mailingList",
+  emailController.joinMailingList,
+  (req: Request, res: Response) => {
+    return res.status(200).json(res.locals.message);
+  }
+);
+
+app.post(
+  "/unsubscribe",
+  emailController.unsubscribe,
+  (req: Request, res: Response) => {
+    return res.status(200).json(res.locals.message);
   }
 );
 

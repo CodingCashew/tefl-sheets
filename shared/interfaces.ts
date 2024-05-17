@@ -5,6 +5,10 @@ export interface SheetsController {
   getSheets?: (req: Request, res: Response, next: any) => void;
   getSheet?: (req: Request, res: Response, next: any) => void;
 }
+export interface EmailController {
+  joinMailingList?: (req: Request, res: Response, next: any) => void;
+  unsubscribe?: (req: Request, res: Response, next: any) => void;
+}
 
 export interface Sheet {
   id: number;

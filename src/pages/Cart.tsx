@@ -20,12 +20,12 @@ const Cart: React.FC = () => {
     <Grid
       container
       justifyContent="center"
-      xs={12}
+      // xs={12}
       className="MuiGrid-wrap-xs-wrap-reverse"
       style={{ minHeight: "100vh", marginTop: "5rem" }}
     >
       {sheetsInCart.length > 0 && (
-        <Grid item xs={12} md={7} justifyContent="center">
+        <Grid item xs={12} md={7}>
           {sheetsInCart.map((sheet: Sheet, index: number) => (
             <Card key={index} style={{ margin: "1rem" }} raised={true}>
               <Grid container>
@@ -63,7 +63,7 @@ const Cart: React.FC = () => {
             <CardContent>
               <Typography variant="h5">Order Summary</Typography>
               <Typography variant="body2" color="textSecondary">
-                {numOfSheets()} Items
+                {numOfSheets()} {numOfSheets() > 1 ? "Items" : "Item"}
               </Typography>
               <Typography variant="h6">Subtotal: ${subtotal()}</Typography>
               <Box display="flex" flexWrap="nowrap" marginTop="1rem">
@@ -77,6 +77,7 @@ const Cart: React.FC = () => {
                 <Button variant="text" size="small" href="/sheets">
                   Continue Shopping
                 </Button>
+                {/* <Message content={message} /> */}
               </Box>
             </CardContent>
           </Card>
@@ -86,7 +87,7 @@ const Cart: React.FC = () => {
         <Grid
           container
           direction="column"
-          xs={12}
+          // xs={12}
           justifyContent="center"
           alignItems="center"
           style={{ marginTop: "3rem" }}
