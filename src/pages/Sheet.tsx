@@ -10,14 +10,26 @@ const Sheet: React.FC = () => {
   const { addSheet } = useShoppingCart();
 
   useEffect(() => {
-    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheet/${sheetId}`)
+    fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://www.teflsheets.com"
+      }/getSheet/${sheetId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => setSheet(data))
       .catch((error) => console.error("Error:", error));
   }, [sheetId]);
 
   return (
-    <Grid container spacing={3} style={{ margin: "1rem", marginTop: "5rem"}}>
+    <Grid container spacing={3} style={{ margin: "1rem", marginTop: "5rem" }}>
       <Grid item xs={11} sm={10} md={6} lg={5} xl={4}>
         <img alt={sheet.title} width="100%" src={sheet.snippedImagePath} />
       </Grid>
@@ -33,7 +45,12 @@ const Sheet: React.FC = () => {
         <Typography variant="h6">${sheet.price}</Typography>
       </Grid>
       <Grid item xs={11}>
-        <Button variant="contained" color="secondary" size="large" onClick={() => addSheet(sheet)}>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => addSheet(sheet)}
+        >
           Add to Cart
         </Button>
       </Grid>

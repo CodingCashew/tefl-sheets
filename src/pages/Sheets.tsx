@@ -21,7 +21,20 @@ const Sheets: React.FC = () => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets`)
+    console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+    fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://www.teflsheets.com"
+      }/getSheets`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
@@ -29,13 +42,37 @@ const Sheets: React.FC = () => {
 
   const searchSheets = () => {
     if (!searchParams) {
-      fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets`)
+      fetch(
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://www.teflsheets.com"
+        }/getSheets`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => setSheets(data))
         .catch((error) => console.error("Error:", error));
       return;
     }
-    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets?search=${searchParams}`)
+    fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://www.teflsheets.com"
+      }/getSheets?search=${searchParams}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));

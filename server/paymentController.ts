@@ -20,8 +20,8 @@ paymentController.pay = async (
       {
         method: "POST",
         headers: {
-          'PayPal-Request-Id': requestId,
-          'Content-Type': 'application/json',
+          "PayPal-Request-Id": requestId,
+          "Content-Type": "application/json",
           Authorization: `Basic ${process.env.REACT_APP_PAYPAL_CLIENT_ID}:${process.env.REACT_APP_PAYPAL_CLIENT_SECRET}`,
         },
       }

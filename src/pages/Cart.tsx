@@ -56,17 +56,25 @@ const Cart: React.FC = () => {
       .capture()
       .then((data: any) => {
         if (data.status === "COMPLETED") {
-          fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/storeOrderDetails`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: data.payer.name.given_name + " " + data.payer.name.surname,
-              email: data.payer.email_address,
-              items: generateArrayOfPdfIds(sheetsInCart),
-            }),
-          })
+          fetch(
+            `${
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:3000"
+                : "https://www.teflsheets.com"
+            }/storeOrderDetails`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name:
+                  data.payer.name.given_name + " " + data.payer.name.surname,
+                email: data.payer.email_address,
+                items: generateArrayOfPdfIds(sheetsInCart),
+              }),
+            }
+          )
             .then((response) => response.json())
             .then((data) => {
               if (data === "Success") {
