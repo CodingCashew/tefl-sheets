@@ -639,7 +639,7 @@ const Home: React.FC = () => {
           gutterBottom
           style={{ color: "white" }}
         >
-          Succeed by using TEFL Sheets
+          Save time and focus on what matters most by using TEFL Sheets
         </Typography>
       </Box>
       {/* row 7 */}
