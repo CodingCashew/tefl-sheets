@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // serve static and html
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).sendFile(path.resolve(__dirname, "../public/index.html"));
+});
 app.use(express.static(path.resolve(__dirname, "../src/index.css")));
 app.use(express.static(path.resolve(__dirname, "../public/assets/")));
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
-});
 
 app.get(
   "/getSheets",
