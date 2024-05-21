@@ -85,7 +85,7 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
   const filteredSheets = temporarySheets.filter((sheet) => {
     return hasSearchParam(sheet, searchParams);
   });
-  console.log("filteredSheets:", filteredSheets);
+
   res.locals.sheets = filteredSheets;
   // res.locals.sheets = data.rows;
   return next();
