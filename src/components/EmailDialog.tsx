@@ -40,7 +40,8 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
 
   const joinMailingList = (e: any) => {
     e.preventDefault();
-    fetch("/mailingList", {
+    // console.log('node.env', process.node.env);
+    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/mailingList`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,8 +74,6 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
           position: "absolute",
           right: 8,
           top: 8,
-          // color: "green",
-          // backgroundColor: "white",
         }}
       ></IconButton>
       <form onSubmit={joinMailingList}>
