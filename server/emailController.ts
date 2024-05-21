@@ -6,7 +6,7 @@ require("dotenv").config();
 export const emailController: EmailController = {};
 
 let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
-console.log('PGHOST, PGDATABASE, PGUSER, PGPASSWORD', PGHOST, PGDATABASE, PGUSER, PGPASSWORD);
+
 const pool = new Pool({
   host: PGHOST,
   database: PGDATABASE,
@@ -25,7 +25,7 @@ emailController.joinMailingList = async (
 ) => {
   const client = await pool.connect();
   const { name, email } = req.body;
-console.log('name, email', name, email);
+
   const params = [name, email];
 
   const queryString = `INSERT INTO mailingList (name, email) VALUES ($1, $2);`;

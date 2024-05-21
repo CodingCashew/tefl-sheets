@@ -21,7 +21,6 @@ const Sheets: React.FC = () => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
-    console.log("process.env.NODE_ENV", process.env.NODE_ENV);
     fetch(
       `${
         process.env.NODE_ENV === "development"

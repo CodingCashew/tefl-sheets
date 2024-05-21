@@ -8,7 +8,7 @@ require("dotenv").config();
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
-console.log("in server ----------------------->");
+
 // parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
