@@ -6,6 +6,11 @@ const Unsubscribe: React.FC = () => {
   const [unsubscribed, setUnsubscribed] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
 
+  const url =
+    process.env.NODE_ENV === "development"
+      ? ''
+      : process.env.REACT_APP_PRODUCTION_URL;
+
   const handleChange = (e: any) => {
     const { email } = e.target;
     setEmail(email);
@@ -14,7 +19,7 @@ const Unsubscribe: React.FC = () => {
   const unsubscribe = (e: any) => {
     e.preventDefault();
     // if (!email) return;
-    fetch(`${process.env.REACT_APP_API_URL}/unsubscribe`, {
+    fetch(`${url}/unsubscribe`, {
       method: "POST",
       headers: {
         Accept: "application/json",

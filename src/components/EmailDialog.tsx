@@ -26,6 +26,8 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
   const primary = theme.palette.primary.main;
   const [values, setValues] = useState(initialValues);
 
+  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setValues({
@@ -41,7 +43,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
   const joinMailingList = (e: any) => {
     e.preventDefault();
     // console.log('node.env', process.node.env);
-    fetch(`${process.env.REACT_APP_API_URL}/mailingList`, {
+    fetch(`${url}/mailingList`, {
       method: "POST",
       headers: {
         Accept: "application/json",

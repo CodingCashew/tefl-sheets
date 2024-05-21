@@ -20,22 +20,26 @@ const Sheets: React.FC = () => {
   const { addSheet } = useShoppingCart();
   const [searchParams, setSearchParams] = useState("");
 
+  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/getSheets`, {
+    fetch(`${url}/getSheets`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log('response', response);
+        return response.json()
+      })
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
   }, []);
 
   const searchSheets = () => {
     if (!searchParams) {
-      fetch(`${process.env.REACT_APP_API_URL}/getSheets`, {
+      fetch(`${url}/getSheets`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -47,7 +51,7 @@ const Sheets: React.FC = () => {
         .catch((error) => console.error("Error:", error));
       return;
     }
-    fetch(`${process.env.REACT_APP_API_URL}/getSheets?search=${searchParams}`, {
+    fetch(`${url}/getSheets?search=${searchParams}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

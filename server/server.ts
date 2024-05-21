@@ -8,7 +8,7 @@ require("dotenv").config();
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
-
+console.log('in server ----------------------->');
 // parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ app.get(
   "/getSheets",
   sheetsController.getSheets,
   (req: Request, res: Response) => {
-    res.status(200).send(res.locals.sheets);
+    return res.status(200).json(res.locals.sheets);
   }
 );
 
@@ -32,7 +32,7 @@ app.get(
   "/getSheet/:id",
   sheetsController.getSheet,
   (req: Request, res: Response) => {
-    res.status(200).send(res.locals.sheet);
+    return res.status(200).json(res.locals.sheet);
   }
 );
 
@@ -40,7 +40,7 @@ app.post(
   "/mailingList",
   emailController.joinMailingList,
   (req: Request, res: Response) => {
-    res.status(201).json(res.locals.message);
+    return res.status(200).json(res.locals.message);
   }
 );
 
@@ -48,7 +48,7 @@ app.post(
   "/unsubscribe",
   emailController.unsubscribe,
   (req: Request, res: Response) => {
-    res.status(200).json(res.locals.message);
+    return res.status(200).json(res.locals.message);
   }
 );
 
@@ -56,7 +56,7 @@ app.post(
   "/storeOrderDetails",
   emailController.storeOrderDetails,
   (req: Request, res: Response) => {
-    res.status(201).json(res.locals.message);
+    return res.status(201).json(res.locals.message);
   }
 );
 
@@ -64,7 +64,7 @@ app.post(
 //   '/api/paypal-transaction-complete',
 //   paymentController.pay,
 //   (req: Request, res: Response) => {
-//     res.status(201).json(res.locals.response);
+//     return res.status(201).json(res.locals.response);
 //   }
 // );
 
