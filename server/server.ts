@@ -8,7 +8,7 @@ require("dotenv").config();
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
-
+console.log('in server ----------------------->');
 // parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ app.use(express.static(path.resolve(__dirname, "../src/assets/")));
 app.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
-// emailController.createMailingListTable()
+
 app.get(
   "/getSheets",
   sheetsController.getSheets,
