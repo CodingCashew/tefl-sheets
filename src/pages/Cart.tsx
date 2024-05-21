@@ -27,6 +27,11 @@ const Cart: React.FC = () => {
     clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || "",
   };
 
+  const generateArrayOfPdfIds = (sheets: Sheet[]) => {
+    const pdfIds = sheets.map((sheet) => sheet.id);
+    return pdfIds;
+  };
+
   const createOrder = (data: any, actions: any) => {
     try {
       return actions.order.create({
@@ -51,9 +56,26 @@ const Cart: React.FC = () => {
       .capture()
       .then((data: any) => {
         if (data.status === "COMPLETED") {
-          console.log(data);
-          setSheetsInCart([]);
-          navigate("/thank-you");
+          fetch("/storeOrderDetails", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: data.payer.name.given_name + " " + data.payer.name.surname,
+              email: data.payer.email_address,
+              items: generateArrayOfPdfIds(sheetsInCart),
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data === "Success") {
+                setSheetsInCart([]);
+                navigate("/thank-you");
+              }
+            })
+
+            .catch((err) => console.log(err));
         }
       })
       .catch((err: any) => {

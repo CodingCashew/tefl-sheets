@@ -20,7 +20,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   useEffect(() => {
     const data = window.localStorage.getItem("cart");
     if (data !== "undefined" && data !== null) {
-      // console.log("data: ", data);
       setSheetsInCart(JSON.parse(data!));
     }
   }, []);

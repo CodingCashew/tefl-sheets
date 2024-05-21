@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
-const paymentController = require("./paymentController");
+// const paymentController = require("./paymentController");
 
 // parse incoming requests
 app.use(express.json());
@@ -53,12 +53,20 @@ app.post(
 );
 
 app.post(
-  '/api/paypal-transaction-complete',
-  paymentController.pay,
+  "/storeOrderDetails",
+  emailController.storeOrderDetails,
   (req: Request, res: Response) => {
-    return res.status(201).json(res.locals.response);
+    return res.status(200).json(res.locals.message);
   }
 );
+
+// app.post(
+//   '/api/paypal-transaction-complete',
+//   paymentController.pay,
+//   (req: Request, res: Response) => {
+//     return res.status(201).json(res.locals.response);
+//   }
+// );
 
 // requests to an unknown route
 app.use("*", (req: Request, res: Response) =>

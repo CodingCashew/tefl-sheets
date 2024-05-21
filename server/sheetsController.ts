@@ -99,7 +99,6 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
 sheetsController.getSheet = (req: Request, res: Response, next: any): void => {
   const id = req.params.id;
 
-  console.log("id in controller: ", id);
   const sheet = temporarySheets.find((sheet) => sheet.id === Number(id));
   // const queryString = `SELECT * FROM sheets where id=${id};`;
 

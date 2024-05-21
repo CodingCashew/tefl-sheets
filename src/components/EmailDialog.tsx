@@ -40,7 +40,6 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
 
   const joinMailingList = (e: any) => {
     e.preventDefault();
-    console.log("values: ", values);
     fetch("/mailingList", {
       method: "POST",
       headers: {
@@ -50,7 +49,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message === "Success") {
+        if (data === "Success") {
           alert("You have successfully joined our mailing list!");
           setValues({
             name: "",

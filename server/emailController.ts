@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { EmailController } from "../shared/interfaces";
-const { Pool } = require('pg');
-require('dotenv').config();
+const { Pool } = require("pg");
+require("dotenv").config();
 
 export const emailController: EmailController = {};
 
@@ -17,7 +17,6 @@ const pool = new Pool({
     require: true,
   },
 });
-
 
 emailController.joinMailingList = async (
   req: Request,
@@ -39,7 +38,7 @@ emailController.joinMailingList = async (
     next({
       log: `Error in emailController.joinMailingList: ${err}`,
       message: { err: "Error adding email" },
-    })
+    });
   } finally {
     client.release();
   }
@@ -63,28 +62,22 @@ emailController.unsubscribe = async (
     next({
       log: `Error in emailController.unsubscribe: ${err}`,
       message: { err: "Error unsubscribing" },
-    })
+    });
   } finally {
     client.release();
   }
 };
 
-emailController.sendOrderEmail = async (
+emailController.storeOrderDetails = async (
   req: Request,
   res: Response,
   next: any
 ) => {
   const client = await pool.connect();
-  const { email, name, items } = req.body;
-  console.log('items --->', items);
-  console.log("email, name: ", email, name);
-  const params = [
-    email,
-    name,
-    items,
-  ]
+  const { name, email, items } = req.body;
+  const params = [name, email, items];
 
-  const queryString = `INSERT INTO mailingList (name, email, items) VALUES ($1, $2, $3);`;
+  const queryString = `INSERT INTO orders (name, email, items) values ($1, $2, $3);`;
 
   try {
     await client.query(queryString, params);
@@ -93,8 +86,8 @@ emailController.sendOrderEmail = async (
   } catch (err) {
     next({
       log: `Error in emailController.unsubscribe: ${err}`,
-      message: { err: "Error sending order email" },
-    })
+      message: { err: "Error storing order" },
+    });
   } finally {
     client.release();
   }

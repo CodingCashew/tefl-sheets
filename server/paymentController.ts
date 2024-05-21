@@ -28,14 +28,9 @@ paymentController.pay = async (
     );
 
     if (response.status !== 201) {
-      console.log("response: ", response);
       throw new Error("Payment failed");
     }
-    console.log("response.data: ", response);
 
-    // res.json({ message: "Payment successful", details: response });
-    // res.locals.message = "Payment successful";
-    // res.locals.details = response;
     res.json({ response });
     res.locals.response = response;
     return next();
