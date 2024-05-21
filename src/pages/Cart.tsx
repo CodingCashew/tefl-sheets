@@ -16,45 +16,55 @@ import React from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { Sheet } from "../../shared/interfaces";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const { sheetsInCart, setSheetsInCart, removeSheet, numOfSheets, subtotal } =
     useShoppingCart();
-    const navigate = useNavigate()
-  // const [message, setMessage] = React.useState<string>("");
+  const navigate = useNavigate();
 
   const initialOptions: ReactPayPalScriptOptions = {
     clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || "",
   };
 
   const createOrder = (data: any, actions: any) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: `${subtotal()}`,
+    try {
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: `${subtotal()}`,
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    } catch (error) {
+      console.error("Error creating order: ", error);
+      alert(
+        "Error creating order. Please try again or reach out using the Contact link below."
+      );
+    }
   };
 
   const onApprove = (data: any, actions: any) => {
-    return actions.order.capture().then((details: any) => {
-      setSheetsInCart([]);
-      navigate('/thank-you');
-      
-    }).catch((err: any) => {
-      console.error(err);
-    });
+    return actions.order
+      .capture()
+      .then((data: any) => {
+        if (data.status === "COMPLETED") {
+          console.log(data);
+          setSheetsInCart([]);
+          navigate("/thank-you");
+        }
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
   };
 
   return (
     <Grid
       container
       justifyContent="center"
-      // xs={12}
       className="MuiGrid-wrap-xs-wrap-reverse"
       style={{ minHeight: "100vh", marginTop: "5rem" }}
     >
@@ -71,7 +81,7 @@ const Cart: React.FC = () => {
           {sheetsInCart.map((sheet: Sheet, index: number) => (
             <Card key={index} style={{ margin: "1rem" }} raised={true}>
               <Grid container style={{ display: "flex", alignItems: "center" }}>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} lg={4}>
                   <CardMedia
                     component="img"
                     alt={sheet.title}
@@ -79,7 +89,7 @@ const Cart: React.FC = () => {
                     image={sheet.snippedImagePath}
                   />
                 </Grid>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} lg={8}>
                   <CardContent>
                     <Typography variant="h5">{sheet.title}</Typography>
                     <Typography variant="body2" color="textSecondary">
@@ -115,14 +125,6 @@ const Cart: React.FC = () => {
                     onApprove={onApprove}
                   />
                 </PayPalScriptProvider>
-                {/* <Button
-                  variant="contained"
-                  color="secondary"
-                  style={{ marginRight: ".5rem" }}
-                >
-                  Check Out
-                </Button> */}
-                {/* <Message content={message} /> */}
               </Box>
             </CardContent>
           </Card>
