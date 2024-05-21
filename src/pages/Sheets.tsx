@@ -33,41 +33,38 @@ const Sheets: React.FC = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        console.log("response in .then: ", response);
-        return response.json();
-      })
-      .then((data) => {
-        console.log("data in .then: ", data);
+      .then((response:any) => response.json())
+      .then((data:any) => {
+        console.log("data: ---->", data);
         setSheets(data);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error:any) => console.error("Error:", error));
   }, [url]);
 
   const searchSheets = () => {
-    if (!searchParams) {
-      fetch(`${url}/getSheets`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => setSheets(data))
-        .catch((error) => console.error("Error:", error));
-      return;
-    }
-    fetch(`${url}/getSheets?search=${searchParams}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setSheets(data))
-      .catch((error) => console.error("Error:", error));
+    console.log("bananas");
+    // if (!searchParams) {
+    //   fetch(`${url}/getSheets`, {
+    //     method: "GET",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => setSheets(data))
+    //     .catch((error) => console.error("Error:", error))
+    // }
+    // fetch(`${url}/getSheets?search=${searchParams}`, {
+    //   method: "GET",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => setSheets(data))
+    //   .catch((error) => console.error("Error:", error));
   };
 
   return (
