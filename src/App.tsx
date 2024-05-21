@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import Sheet from "./pages/Sheet";
 import Footer from "./components/Footer";
 import "./App.css";
-import { Analytics } from '@vercel/analytics/react';
+// import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const App: React.FC = () => {
         <Route path="/unsubscribe" element={<Unsubscribe />} />
       </Routes>
       <Footer />
-      <Analytics />
+      {/* <Analytics /> */}
     </BrowserRouter>
   );
 };
