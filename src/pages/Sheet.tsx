@@ -10,7 +10,7 @@ const Sheet: React.FC = () => {
   const { addSheet } = useShoppingCart();
 
   useEffect(() => {
-    fetch(`/getSheet/${sheetId}`)
+    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheet/${sheetId}`)
       .then((response) => response.json())
       .then((data) => setSheet(data))
       .catch((error) => console.error("Error:", error));

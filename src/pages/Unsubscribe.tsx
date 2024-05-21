@@ -14,7 +14,7 @@ const Unsubscribe: React.FC = () => {
   const unsubscribe = (e: any) => {
     e.preventDefault();
     // if (!email) return;
-    fetch("/unsubscribe", {
+    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/unsubscribe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

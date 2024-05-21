@@ -21,7 +21,7 @@ const Sheets: React.FC = () => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
-    fetch("/getSheets")
+    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets`)
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
@@ -29,13 +29,13 @@ const Sheets: React.FC = () => {
 
   const searchSheets = () => {
     if (!searchParams) {
-      fetch("/getSheets")
+      fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets`)
         .then((response) => response.json())
         .then((data) => setSheets(data))
         .catch((error) => console.error("Error:", error));
       return;
     }
-    fetch(`/getSheets?search=${searchParams}`)
+    fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/getSheets?search=${searchParams}`)
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));

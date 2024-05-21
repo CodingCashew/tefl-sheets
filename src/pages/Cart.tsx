@@ -56,7 +56,7 @@ const Cart: React.FC = () => {
       .capture()
       .then((data: any) => {
         if (data.status === "COMPLETED") {
-          fetch("/storeOrderDetails", {
+          fetch(`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.teflsheets.com'}/storeOrderDetails`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
