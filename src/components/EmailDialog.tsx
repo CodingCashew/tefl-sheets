@@ -41,20 +41,13 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
   const joinMailingList = (e: any) => {
     e.preventDefault();
     // console.log('node.env', process.node.env);
-    fetch(
-      `${
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000"
-          : "https://www.teflsheets.com"
-      }/mailingList`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      }
-    )
+    fetch(`/mailingList`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data === "Success") {
