@@ -44,6 +44,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
     fetch(`/mailingList`, {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),

@@ -21,12 +21,20 @@ const Sheets: React.FC = () => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
-    fetch(`/getSheets`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://www.teflsheets.com"
+      }/getSheets`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
@@ -34,23 +42,39 @@ const Sheets: React.FC = () => {
 
   const searchSheets = () => {
     if (!searchParams) {
-      fetch(`/getSheets`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://www.teflsheets.com"
+        }/getSheets`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => setSheets(data))
         .catch((error) => console.error("Error:", error));
       return;
     }
-    fetch(`/getSheets?search=${searchParams}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://www.teflsheets.com"
+      }/getSheets?search=${searchParams}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
