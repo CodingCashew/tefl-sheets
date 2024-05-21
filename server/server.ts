@@ -24,7 +24,7 @@ app.get(
   "/getSheets",
   sheetsController.getSheets,
   (req: Request, res: Response) => {
-    res.status(200).json(res.locals.sheets);
+    res.status(200).send(res.locals.sheets);
   }
 );
 
@@ -32,7 +32,7 @@ app.get(
   "/getSheet/:id",
   sheetsController.getSheet,
   (req: Request, res: Response) => {
-    res.status(200).json(res.locals.sheet);
+    res.status(200).send(res.locals.sheet);
   }
 );
 
