@@ -20,9 +20,13 @@ const Sheets: React.FC = () => {
   const { addSheet } = useShoppingCart();
   const [searchParams, setSearchParams] = useState("");
 
-  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
+  const url =
+    process.env.NODE_ENV === "development"
+      ? ""
+      : process.env.REACT_APP_PRODUCTION_URL;
 
   useEffect(() => {
+    console.log("url: ------>", url);
     fetch(`${url}/getSheets`, {
       method: "GET",
       headers: {
@@ -30,12 +34,15 @@ const Sheets: React.FC = () => {
       },
     })
       .then((response) => {
-        console.log('response', response);
-        return response.json()
+        console.log("response in .then: ", response);
+        return response.json();
       })
-      .then((data) => setSheets(data))
+      .then((data) => {
+        console.log("data in .then: ", data);
+        setSheets(data);
+      })
       .catch((error) => console.error("Error:", error));
-  }, []);
+  }, [url]);
 
   const searchSheets = () => {
     if (!searchParams) {
