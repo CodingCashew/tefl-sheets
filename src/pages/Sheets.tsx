@@ -35,8 +35,14 @@ const Sheets: React.FC = () => {
         },
       }
     )
-      .then((response) => response.json())
-      .then((data) => setSheets(data))
+      .then((response) => {
+        console.log("response", response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log("data", data);
+        setSheets(data);
+      })
       .catch((error) => console.error("Error:", error));
   }, []);
 

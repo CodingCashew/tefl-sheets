@@ -75,6 +75,8 @@ export const sheetsController: SheetsController = {};
 sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
   const searchParams = req.query.search as string;
 
+  console.log("searchParams", searchParams);
+
   // const queryString = `SELECT * FROM sheets;`;
 
   // db.query(queryString)
@@ -83,7 +85,7 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
   const filteredSheets = temporarySheets.filter((sheet) => {
     return hasSearchParam(sheet, searchParams);
   });
-
+  console.log("filteredSheets:", filteredSheets);
   res.locals.sheets = filteredSheets;
   // res.locals.sheets = data.rows;
   return next();
