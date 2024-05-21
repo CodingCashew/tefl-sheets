@@ -10,20 +10,13 @@ const Sheet: React.FC = () => {
   const { addSheet } = useShoppingCart();
 
   useEffect(() => {
-    fetch(
-      `${
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000"
-          : "https://www.teflsheets.com"
-      }/getSheet/${sheetId}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/getSheet/${sheetId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => setSheet(data))
       .catch((error) => console.error("Error:", error));

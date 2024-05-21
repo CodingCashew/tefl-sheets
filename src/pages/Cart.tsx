@@ -56,7 +56,7 @@ const Cart: React.FC = () => {
       .capture()
       .then((data: any) => {
         if (data.status === "COMPLETED") {
-          fetch(`/storeOrderDetails`, {
+          fetch(`${process.env.REACT_APP_API_URL}/storeOrderDetails`, {
             method: "POST",
             headers: {
               Accept: "application/json",

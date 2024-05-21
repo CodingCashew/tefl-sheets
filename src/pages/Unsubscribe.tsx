@@ -14,21 +14,14 @@ const Unsubscribe: React.FC = () => {
   const unsubscribe = (e: any) => {
     e.preventDefault();
     // if (!email) return;
-    fetch(
-      `${
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000"
-          : "https://www.teflsheets.com"
-      }/unsubscribe`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/unsubscribe`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
       .then((response) => response.json())
       .then((data) => {
         alert("You have successfully unsubscribed from our mailing list!");

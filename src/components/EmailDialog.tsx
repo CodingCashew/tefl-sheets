@@ -41,7 +41,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
   const joinMailingList = (e: any) => {
     e.preventDefault();
     // console.log('node.env', process.node.env);
-    fetch(`/mailingList`, {
+    fetch(`${process.env.REACT_APP_API_URL}/mailingList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
