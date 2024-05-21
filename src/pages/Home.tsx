@@ -384,7 +384,7 @@ const Home: React.FC = () => {
           <Grid
             item
             xs={12}
-            md={6}
+            md={9}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -409,8 +409,6 @@ const Home: React.FC = () => {
         </Grid>
         <Grid
           container
-          xs={12}
-          md={9}
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -421,6 +419,8 @@ const Home: React.FC = () => {
         >
           <Grid
             item
+            xs={12}
+            md={9}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -659,8 +659,8 @@ const Home: React.FC = () => {
           Get our FREE conversation question sheet!
         </Typography>
         <Grid item xs={11} sm={10} md={6} lg={5} xl={3}>
-        <img alt="sheet" width="100%" src="/assets/dummyPDFSNIP.jpg" />
-      </Grid>
+          <img alt="sheet" width="100%" src="/assets/dummyPDFSNIP.jpg" />
+        </Grid>
         <Button
           variant="contained"
           size="large"

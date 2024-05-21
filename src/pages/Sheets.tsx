@@ -27,7 +27,7 @@ const Sheets: React.FC = () => {
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  const searchSheets = (() => {
+  const searchSheets = () => {
     if (!searchParams) {
       fetch("/getSheets")
         .then((response) => response.json())
@@ -39,10 +39,10 @@ const Sheets: React.FC = () => {
       .then((response) => response.json())
       .then((data) => setSheets(data))
       .catch((error) => console.error("Error:", error));
-  })
+  };
 
   return (
-    <div style={{ margin: "2rem", minHeight: "100vh", marginTop: "5rem"}}>
+    <div style={{ margin: "2rem", minHeight: "100vh", marginTop: "5rem" }}>
       <Grid
         container
         justifyContent="center"
@@ -50,7 +50,6 @@ const Sheets: React.FC = () => {
       >
         <Grid item xs={12} sm={9} md={6}>
           <Paper
-            // component="form"
             style={{
               padding: "2px 4px",
               display: "flex",
@@ -73,7 +72,7 @@ const Sheets: React.FC = () => {
               style={{ padding: "10px" }}
               aria-label="search"
               onClick={() => {
-                searchSheets()
+                searchSheets();
               }}
             >
               <BsSearch />
