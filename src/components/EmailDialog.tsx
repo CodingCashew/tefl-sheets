@@ -79,7 +79,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
           top: 8,
         }}
       ></IconButton>
-      <form onSubmit={joinMailingList}>
+      <div onSubmit={joinMailingList}>
         <Grid container direction="column" style={{ padding: "1rem" }}>
           <Typography>
             Join our community focused on educating and engaging learners
@@ -119,7 +119,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
             Join <BsChevronRight />
           </Button>
         </Grid>
-      </form>
+      </div>
     </Dialog>
   );
 };

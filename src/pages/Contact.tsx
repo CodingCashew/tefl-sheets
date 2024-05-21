@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
         justifyContent="center"
         style={{ minHeight: "100vh" }}
       >
-        <form >
+        <div >
           <Grid
             container
             direction="column"
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
               </Button>
             </Grid>
           </Grid>
-        </form>
+        </div>
       </Box>
     </Container>
   );
