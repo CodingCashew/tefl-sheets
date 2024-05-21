@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = 8080;
-const axios = require('axios');
 require("dotenv").config();
 
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
+const paymentController = require("./paymentController");
 
 // parse incoming requests
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(express.static(path.resolve(__dirname, "../src/assets/")));
 app.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
-
+// emailController.createMailingListTable()
 app.get(
   "/getSheets",
   sheetsController.getSheets,
@@ -49,6 +49,14 @@ app.post(
   emailController.unsubscribe,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.message);
+  }
+);
+
+app.post(
+  '/api/paypal-transaction-complete',
+  paymentController.pay,
+  (req: Request, res: Response) => {
+    return res.status(201).json(res.locals.response);
   }
 );
 

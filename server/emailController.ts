@@ -1,54 +1,103 @@
-// const db = require("./EmailModel.js");
 import { Request, Response } from "express";
 import { EmailController } from "../shared/interfaces";
-
+const { Pool } = require('pg');
+require('dotenv').config();
 
 export const emailController: EmailController = {};
 
-emailController.joinMailingList = (req: Request, res: Response, next: any): void => {
-  const {name, email} = req.body;
-  console.log('name, email: ', name, email);
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
-  // const queryString = `SELECT * FROM email;`;
-
-  // db.query(queryString)
-  //   .then((data) => {
-
-  // const filteredEmail = temporaryEmail.filter((sheet) => {
-  //   return hasSearchParam(sheet, searchParams);
-  // });
-
-  res.locals.message = "Success";
-  // res.locals.email = data.rows;
-  return next();
-  // })
-  // .catch((err) =>
-  //   next({
-  //     log: `Error in emailController.getEmail: ${err}`,
-  //     message: { err: "Error getting email" },
-  //   })
-  // );
-};
-emailController.unsubscribe = (req: Request, res: Response, next: any): void => {
-  const {email} = req.body;
-console.log('email: ', email);
-  // const queryString = `SELECT * FROM email;`;
-
-  // db.query(queryString)
-  //   .then((data) => {
+const pool = new Pool({
+  host: PGHOST,
+  database: PGDATABASE,
+  username: PGUSER,
+  password: PGPASSWORD,
+  port: 5432,
+  ssl: {
+    require: true,
+  },
+});
 
 
-  res.locals.message = "Success";
-  // res.locals.email = data.rows;
-  return next();
-  // })
-  // .catch((err) =>
-  //   next({
-  //     log: `Error in emailController.getEmail: ${err}`,
-  //     message: { err: "Error getting email" },
-  //   })
-  // );
+emailController.joinMailingList = async (
+  req: Request,
+  res: Response,
+  next: any
+) => {
+  const client = await pool.connect();
+  const { name, email } = req.body;
+
+  const params = [name, email];
+
+  const queryString = `INSERT INTO mailingList (name, email) VALUES ($1, $2);`;
+
+  try {
+    await client.query(queryString, params);
+    res.locals.message = "Success";
+    return next();
+  } catch (err) {
+    next({
+      log: `Error in emailController.joinMailingList: ${err}`,
+      message: { err: "Error adding email" },
+    })
+  } finally {
+    client.release();
+  }
 };
 
+emailController.unsubscribe = async (
+  req: Request,
+  res: Response,
+  next: any
+) => {
+  const client = await pool.connect();
+  const { email } = req.body;
+
+  const queryString = `DELETE FROM mailingList where email=${email};`;
+
+  try {
+    await client.query(queryString);
+    res.locals.message = "Success";
+    return next();
+  } catch (err) {
+    next({
+      log: `Error in emailController.unsubscribe: ${err}`,
+      message: { err: "Error unsubscribing" },
+    })
+  } finally {
+    client.release();
+  }
+};
+
+emailController.sendOrderEmail = async (
+  req: Request,
+  res: Response,
+  next: any
+) => {
+  const client = await pool.connect();
+  const { email, name, items } = req.body;
+  console.log('items --->', items);
+  console.log("email, name: ", email, name);
+  const params = [
+    email,
+    name,
+    items,
+  ]
+
+  const queryString = `INSERT INTO mailingList (name, email, items) VALUES ($1, $2, $3);`;
+
+  try {
+    await client.query(queryString, params);
+    res.locals.message = "Success";
+    return next();
+  } catch (err) {
+    next({
+      log: `Error in emailController.unsubscribe: ${err}`,
+      message: { err: "Error sending order email" },
+    })
+  } finally {
+    client.release();
+  }
+};
 
 module.exports = emailController;

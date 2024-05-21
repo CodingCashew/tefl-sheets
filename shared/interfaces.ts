@@ -8,6 +8,10 @@ export interface SheetsController {
 export interface EmailController {
   joinMailingList?: (req: Request, res: Response, next: any) => void;
   unsubscribe?: (req: Request, res: Response, next: any) => void;
+  sendOrderEmail?: (req: Request, res: Response, next: any) => void;
+}
+export interface PaymentController {
+  pay?: (req: Request, res: Response, next: any) => void;
 }
 
 export interface Sheet {
