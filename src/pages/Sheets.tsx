@@ -27,17 +27,7 @@ const Sheets: React.FC = () => {
         "Content-Type": "application/json",
       },
     })
-      // .then((response: any) => response.json())
-      .then((response: any) => {
-        return [
-          {
-            id: 1,
-            title: "Dummy title - Hope this renders",
-            blurb: "This is a dummy blurb",
-            snippedImagePath: "/public/assets/dummyPDFSNIP1.jpg",
-          },
-        ]
-      })
+      .then((response: any) => response.json())
       .then((data: any) => setSheets(data))
       .catch((error: any) => console.log("Error:", error));
   }, []);
