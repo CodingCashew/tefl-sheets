@@ -27,7 +27,17 @@ const Sheets: React.FC = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response: any) => response.json())
+      // .then((response: any) => response.json())
+      .then((response: any) => {
+        return [
+          {
+            id: 1,
+            title: "Dummy title - Hope this renders",
+            blurb: "This is a dummy blurb",
+            snippedImagePath: "/public/assets/dummyPDFSNIP1.jpg",
+          },
+        ]
+      })
       .then((data: any) => setSheets(data))
       .catch((error: any) => console.log("Error:", error));
   }, []);
@@ -50,7 +60,7 @@ const Sheets: React.FC = () => {
   return (
     <div style={{ margin: "2rem", minHeight: "100vh", marginTop: "5rem" }}>
       <h1>Fuck this piece of shit what the hell is it fucking doing? 304? Fuck you why the hell is this not working. It has been modified you piece of shit. Jävlar förbannat piiiiinche chingadera este sitio que no funcciona vete al infierno hijo de puta </h1>
-      {/* <Grid
+      <Grid
         container
         justifyContent="center"
         style={{ marginTop: "1rem", marginBottom: "1rem" }}
@@ -144,7 +154,7 @@ const Sheets: React.FC = () => {
             </Button>
           </Card>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
