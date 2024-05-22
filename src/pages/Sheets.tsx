@@ -24,12 +24,18 @@ const Sheets: React.FC = () => {
     fetch(`/getSheets`, {
       method: "GET",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
-      .then((response: any) => response.json())
+      .then((response: any) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data: any) => setSheets(data))
-      .catch((error: any) => console.log("Error:", error));
+      .catch((error: any) => console.error("Error:", error));
   }, []);
 
   const searchSheets = () => {
@@ -44,12 +50,11 @@ const Sheets: React.FC = () => {
     })
       .then((response) => response.json())
       .then((data) => setSheets(data))
-      .catch((error) => console.log("Error:", error));
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
     <div style={{ margin: "2rem", minHeight: "100vh", marginTop: "5rem" }}>
-      <h1>Fuck this piece of shit what the hell is it fucking doing? 304? Fuck you why the hell is this not working. It has been modified you piece of shit. Jävlar förbannat piiiiinche chingadera este sitio que no funcciona vete al infierno hijo de puta </h1>
       <Grid
         container
         justifyContent="center"
