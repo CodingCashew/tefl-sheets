@@ -20,51 +20,31 @@ const Sheets: React.FC = () => {
   const { addSheet } = useShoppingCart();
   const [searchParams, setSearchParams] = useState("");
 
-  const url =
-    process.env.NODE_ENV === "development"
-      ? ""
-      : process.env.REACT_APP_PRODUCTION_URL;
-
   useEffect(() => {
-    console.log("url: ------>", url);
-    fetch(`${url}/getSheets`, {
+    fetch(`/getSheets`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((response:any) => response.json())
-      .then((data:any) => {
-        console.log("data: ---->", data);
-        setSheets(data);
-      })
-      .catch((error:any) => console.error("Error:", error));
-  }, [url]);
+      .then((response: any) => response.json())
+      .then((data: any) => setSheets(data))
+      .catch((error: any) => console.log("Error:", error));
+  }, []);
 
   const searchSheets = () => {
-    console.log("bananas");
-    // if (!searchParams) {
-    //   fetch(`${url}/getSheets`, {
-    //     method: "GET",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => setSheets(data))
-    //     .catch((error) => console.error("Error:", error))
-    // }
-    // fetch(`${url}/getSheets?search=${searchParams}`, {
-    //   method: "GET",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => setSheets(data))
-    //   .catch((error) => console.error("Error:", error));
+    if (!searchParams) return;
+
+    fetch(`/getSheets?search=${searchParams}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setSheets(data))
+      .catch((error) => console.log("Error:", error));
   };
 
   return (

@@ -26,8 +26,6 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
   const primary = theme.palette.primary.main;
   const [values, setValues] = useState(initialValues);
 
-  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
-
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setValues({
@@ -42,8 +40,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
 
   const joinMailingList = (e: any) => {
     e.preventDefault();
-    // console.log('node.env', process.node.env);
-    fetch(`${url}/mailingList`, {
+    fetch(`/mailingList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -79,7 +76,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
           top: 8,
         }}
       ></IconButton>
-      <div onSubmit={joinMailingList}>
+      <form onSubmit={joinMailingList}>
         <Grid container direction="column" style={{ padding: "1rem" }}>
           <Typography>
             Join our community focused on educating and engaging learners
@@ -119,7 +116,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
             Join <BsChevronRight />
           </Button>
         </Grid>
-      </div>
+      </form>
     </Dialog>
   );
 };
