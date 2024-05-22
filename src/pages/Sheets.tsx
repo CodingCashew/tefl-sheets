@@ -49,7 +49,8 @@ const Sheets: React.FC = () => {
 
   return (
     <div style={{ margin: "2rem", minHeight: "100vh", marginTop: "5rem" }}>
-      <Grid
+      <h1>Fuck this piece of shit what the hell is it fucking doing? 304? Fuck you why the hell is this not working. It has been modified you piece of shit. Jävlar förbannat piiiiinche chingadera este sitio que no funcciona vete al infierno hijo de puta </h1>
+      {/* <Grid
         container
         justifyContent="center"
         style={{ marginTop: "1rem", marginBottom: "1rem" }}
@@ -143,7 +144,7 @@ const Sheets: React.FC = () => {
             </Button>
           </Card>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
