@@ -36,6 +36,7 @@
     "react-icons": "^5.2.0",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.3",
     "ts-loader": "^9.5.1",
     "uuid": "^9.0.1",
     "vercel": "^34.2.0",
