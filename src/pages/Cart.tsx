@@ -23,8 +23,6 @@ const Cart: React.FC = () => {
     useShoppingCart();
   const navigate = useNavigate();
 
-  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
-
   const initialOptions: ReactPayPalScriptOptions = {
     clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || "",
   };
@@ -58,7 +56,7 @@ const Cart: React.FC = () => {
       .capture()
       .then((data: any) => {
         if (data.status === "COMPLETED") {
-          fetch(`${url}/storeOrderDetails`, {
+          fetch(`/api/storeOrderDetails`, {
             method: "POST",
             headers: {
               Accept: "application/json",

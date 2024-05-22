@@ -21,7 +21,7 @@ const Sheets: React.FC = () => {
   const [searchParams, setSearchParams] = useState("");
 
   useEffect(() => {
-    fetch(`/getSheets`, {
+    fetch(`/api/getSheets`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -34,14 +34,16 @@ const Sheets: React.FC = () => {
         }
         return response.json();
       })
-      .then((data: any) => setSheets(data))
+      .then((data: any) => {
+        console.log('data: ', data)
+        setSheets(data)})
       .catch((error: any) => console.error("Error:", error));
   }, []);
 
   const searchSheets = () => {
     if (!searchParams) return;
 
-    fetch(`/getSheets?search=${searchParams}`, {
+    fetch(`/api/getSheets?search=${searchParams}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

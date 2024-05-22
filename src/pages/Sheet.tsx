@@ -9,10 +9,8 @@ const Sheet: React.FC = () => {
   const [sheet, setSheet] = useState({} as SheetType);
   const { addSheet } = useShoppingCart();
 
-  const url = process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_PRODUCTION_URL;
-
   useEffect(() => {
-    fetch(`${url}/getSheet/${sheetId}`, {
+    fetch(`/api/getSheet/${sheetId}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -22,7 +20,7 @@ const Sheet: React.FC = () => {
       .then((response) => response.json())
       .then((data) => setSheet(data))
       .catch((error) => console.error("Error:", error));
-  }, [sheetId, url]);
+  }, [sheetId]);
 
   return (
     <Grid container spacing={3} style={{ margin: "1rem", marginTop: "5rem" }}>

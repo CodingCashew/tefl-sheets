@@ -21,7 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get(
-  "/getSheets",
+  "/api/getSheets",
   sheetsController.getSheets,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.sheets);
@@ -29,7 +29,7 @@ app.get(
 );
 
 app.get(
-  "/getSheet/:id",
+  "/api/getSheet/:id",
   sheetsController.getSheet,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.sheet);
@@ -37,7 +37,7 @@ app.get(
 );
 
 app.post(
-  "/mailingList",
+  "/api/mailingList",
   emailController.joinMailingList,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.message);
@@ -45,7 +45,7 @@ app.post(
 );
 
 app.post(
-  "/unsubscribe",
+  "/api/unsubscribe",
   emailController.unsubscribe,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.message);
@@ -53,7 +53,7 @@ app.post(
 );
 
 app.post(
-  "/storeOrderDetails",
+  "/api/storeOrderDetails",
   emailController.storeOrderDetails,
   (req: Request, res: Response) => {
     return res.status(201).json(res.locals.message);
