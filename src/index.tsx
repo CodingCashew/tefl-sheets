@@ -37,4 +37,3 @@ root.render(
     </ShoppingCartProvider>
   </ThemeProvider>
 );
-
