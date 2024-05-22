@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 const express = require("express");
 const app = express();
-const path = require("path");
+// const path = require("path");
 const PORT = 8080;
 require("dotenv").config();
 
@@ -14,11 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // serve static and html
-app.use(express.static(path.resolve(__dirname, "../src/App.css")));
-app.use(express.static(path.resolve(__dirname, "../public/assets/")));
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
-});
+// app.use(express.static(path.resolve(__dirname, "../src/App.css")));
+// app.use(express.static(path.resolve(__dirname, "../public/assets/")));
+// app.get("/", (req: Request, res: Response) => {
+//   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
+// });
+app.use(express.static("public"))
 
 app.get(
   "/api/getSheets",
@@ -40,7 +41,7 @@ app.post(
   "/api/mailingList",
   emailController.joinMailingList,
   (req: Request, res: Response) => {
-    return res.status(200).json(res.locals.message);
+    return res.status(200).json(res);
   }
 );
 

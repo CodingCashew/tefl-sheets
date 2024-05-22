@@ -1,3 +1,5 @@
+import { VercelRequest, VercelResponse } from "@vercel/node";
+import { sql } from "@vercel/postgres";
 import { Request, Response } from "express";
 import { EmailController } from "../shared/interfaces";
 const { Pool } = require("pg");
@@ -19,28 +21,31 @@ const pool = new Pool({
 });
 
 emailController.joinMailingList = async (
-  req: Request,
-  res: Response,
+  req: VercelRequest,
+  res: VercelResponse,
   next: any
 ) => {
-  const client = await pool.connect();
+  // const client = await pool.connect();
   const { name, email } = req.body;
 
-  const params = [name, email];
+  // const params = [name, email];
 
-  const queryString = `INSERT INTO mailingList (name, email) VALUES ($1, $2);`;
+  // const queryString = `INSERT INTO mailingList (name, email) VALUES ($1, $2);`;
 
   try {
-    await client.query(queryString, params);
-    res.locals.message = "Success";
+    await sql`INSERT INTO mailingList (name, email) VALUES (${name}, ${email});`;
+    // await client.query(queryString, params);
+    // res.locals.message = "Success";
+
+    // res.status(200).json({res});
     return next();
   } catch (err) {
     next({
       log: `Error in emailController.joinMailingList: ${err}`,
       message: { err: "Error adding email" },
     });
-  } finally {
-    client.release();
+    // } finally {
+    //   client.release();
   }
 };
 
