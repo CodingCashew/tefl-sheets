@@ -29,6 +29,7 @@ const Sheets: React.FC = () => {
       },
     })
       .then((response: any) => {
+        console.log('response: ', response);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
