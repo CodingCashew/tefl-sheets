@@ -48,7 +48,7 @@ const Home: React.FC = () => {
           style={{ color: "white" }}
           gutterBottom
         >
-          Ready to fucking compile correctly?
+          Ready to [are they really censoring me?] compile correctly?
         </Typography>
         <Typography
           variant="h2"
