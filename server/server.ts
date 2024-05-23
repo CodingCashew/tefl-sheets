@@ -19,9 +19,7 @@ app.use(express.static(path.resolve(__dirname, "../public/assets/")));
 app.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
-// app.use(express.static('public'))
-// app.use(express.static("public"))
-throw new Error("in server.ts")
+
 app.get(
   "/api/getSheets",
   sheetsController.getSheets,

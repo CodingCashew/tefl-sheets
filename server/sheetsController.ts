@@ -73,7 +73,6 @@ const hasSearchParam = (sheet: Sheet, searchParams = ""): boolean => {
 export const sheetsController: SheetsController = {};
 
 sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
-  throw new Error("in getSheets")
   console.log("in getSheets");
   const searchParams = req.query.search as string;
   try {

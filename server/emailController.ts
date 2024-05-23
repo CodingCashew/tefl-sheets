@@ -27,7 +27,6 @@ emailController.joinMailingList = async (
 ) => {
   // const client = await pool.connect();
   const { name, email } = req.body;
-  throw new Error("in joinMailingList")
   // const params = [name, email];
 
   // const queryString = `INSERT INTO mailingList (name, email) VALUES ($1, $2);`;
