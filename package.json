@@ -4,7 +4,6 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "main": "server.ts",
-  "type": "module",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emailjs/browser": "^4.3.3",
