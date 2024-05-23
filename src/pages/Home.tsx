@@ -48,7 +48,7 @@ const Home: React.FC = () => {
           style={{ color: "white" }}
           gutterBottom
         >
-          Ready to spark your students' curiosity?
+          Ready to fucking compile correctly?
         </Typography>
         <Typography
           variant="h2"
