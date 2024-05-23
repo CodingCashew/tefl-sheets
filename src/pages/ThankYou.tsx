@@ -11,7 +11,7 @@ const ThankYou: React.FC = () => {
         Your order is complete.
       </Typography>
       <Typography variant="body1" align="center">
-        We've sent an email to your registered email address with the PDF you
+        We've sent an email to your email address with the PDF you
         ordered attached. Please check your email.
       </Typography>
       <div
