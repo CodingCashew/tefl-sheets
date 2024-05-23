@@ -2,8 +2,8 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "server.ts",
-      "destination": "server.ts"
+      "source": "server/server.ts",
+      "destination": "server/server.ts"
     }
   ]
 }
