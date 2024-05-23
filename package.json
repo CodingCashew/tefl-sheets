@@ -3,7 +3,6 @@
   "version": "0.1.1",
   "private": true,
   "proxy": "http://localhost:8080",
-  "main": "server/server.ts",
   "engines": {
     "node": "20.x"
   },
