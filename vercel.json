@@ -1,12 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "src": {
-      "server.ts": {
-        "memory": 3009,
-        "maxDuration": 30
-      }
-    },
+    "src": "server.ts",
     "use": "@vercel/node"
   },
   "rewrites": [
