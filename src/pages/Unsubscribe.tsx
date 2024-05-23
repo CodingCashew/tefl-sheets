@@ -14,7 +14,7 @@ const Unsubscribe: React.FC = () => {
   const unsubscribe = (e: any) => {
     e.preventDefault();
     // if (!email) return;
-    fetch(`/api/unsubscribe`, {
+    fetch(`/unsubscribe`, {
       method: "POST",
       headers: {
         Accept: "application/json",

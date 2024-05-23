@@ -10,7 +10,7 @@ const Sheet: React.FC = () => {
   const { addSheet } = useShoppingCart();
 
   useEffect(() => {
-    fetch(`/api/getSheet/${sheetId}`, {
+    fetch(`/getSheet/${sheetId}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

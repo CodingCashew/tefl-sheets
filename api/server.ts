@@ -25,7 +25,7 @@ app.use(express.static('public'));
 // });
 
 app.get(
-  "/api/getSheets",
+  "/getSheets",
   sheetsController.getSheets,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.sheets);
@@ -33,7 +33,7 @@ app.get(
 );
 
 app.get(
-  "/api/getSheet/:id",
+  "/getSheet/:id",
   sheetsController.getSheet,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.sheet);
@@ -41,7 +41,7 @@ app.get(
 );
 
 app.post(
-  "/api/mailingList",
+  "/mailingList",
   emailController.joinMailingList,
   (req: Request, res: Response) => {
     return res.status(200).json(res);
@@ -49,7 +49,7 @@ app.post(
 );
 
 app.post(
-  "/api/unsubscribe",
+  "/unsubscribe",
   emailController.unsubscribe,
   (req: Request, res: Response) => {
     return res.status(200).json(res.locals.message);
@@ -57,7 +57,7 @@ app.post(
 );
 
 app.post(
-  "/api/storeOrderDetails",
+  "/storeOrderDetails",
   emailController.storeOrderDetails,
   (req: Request, res: Response) => {
     return res.status(201).json(res.locals.message);
@@ -65,7 +65,7 @@ app.post(
 );
 
 // app.post(
-//   '/api/paypal-transaction-complete',
+//   '/paypal-transaction-complete',
 //   paymentController.pay,
 //   (req: Request, res: Response) => {
 //     return res.status(201).json(res.locals.response);

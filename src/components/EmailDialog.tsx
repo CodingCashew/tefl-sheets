@@ -40,7 +40,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
 
   const joinMailingList = (e: any) => {
     e.preventDefault();
-    fetch(`/api/mailingList`, {
+    fetch(`/mailingList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
