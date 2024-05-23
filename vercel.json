@@ -1,10 +1,18 @@
 {
   "version": 2,
   "functions": {
-    "src": "server.ts",
+    "src": {
+      "server.ts": {
+        "memory": 3009,
+        "maxDuration": 30
+      }
+    },
     "use": "@vercel/node"
   },
   "rewrites": [
-    { "src": "/api/(.*)", "dest": "/api/server.ts" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/server.ts"
+    }
   ]
 }
