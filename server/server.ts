@@ -21,7 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 // app.use(express.static('public'))
 // app.use(express.static("public"))
-
+throw new Error("in server.ts")
 app.get(
   "/api/getSheets",
   sheetsController.getSheets,
