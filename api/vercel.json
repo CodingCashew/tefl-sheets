@@ -2,6 +2,6 @@
   "version": 2,
 
   "redirects": [
-    { "src": "/api/(.*)", "dest": "/api/server.ts" }
+    { "source": "/api/(.*)", "destination": "/api/server.ts" }
   ]
 }
