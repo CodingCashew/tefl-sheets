@@ -1,7 +1,9 @@
 {
   "version": 2,
-  "functions":
-    { "src": "server.ts", "use": "@vercel/node" },
+  "functions": {
+    "src": "server.ts",
+    "use": "@vercel/node"
+  },
   "rewrites": [
     { "src": "/api/(.*)", "dest": "/api/server.ts" }
   ]
