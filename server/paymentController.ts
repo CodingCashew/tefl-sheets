@@ -13,6 +13,7 @@ paymentController.pay = async (
   res: Response,
   next: any
 ): Promise<void> => {
+  throw new Error("in pay");
   const { orderID } = req.body;
   try {
     const response = await fetch(

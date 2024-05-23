@@ -12,8 +12,8 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 const theme = createTheme({
   palette: {
     primary: {
-      light: cyan[500],
-      // light: cyan["A200"],
+      // light: cyan[500],
+      light: cyan["A200"],
       main: cyan[700],
       dark: cyan[900],
     },
