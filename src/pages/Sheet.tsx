@@ -36,7 +36,7 @@ const Sheet: React.FC = () => {
         </Typography>
       </Grid>
       <Grid item xs={11}>
-        <Typography variant="h6">${sheet.price}</Typography>
+        <Typography variant="h6">This here is a HUUUUGE change that will trigger a new deployment ${sheet.price}</Typography>
       </Grid>
       <Grid item xs={11}>
         <Button
