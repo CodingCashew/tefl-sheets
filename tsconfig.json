@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "./build",
+    "target": "es2021",
+    "module": "Node16",
+    "outDir": "build",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "es2021",
     ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -25,8 +23,17 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
+    "src/**/*.json",
+    "api/**/*.ts",
+    "api/**/*.js",
+    "api/**/*.jsx",
+    "api/**/*.json",
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "ts-node":
+    {
+      "files": true
+    }
 }
