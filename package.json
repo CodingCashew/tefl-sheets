@@ -2,6 +2,8 @@
   "name": "tefl-sheets",
   "version": "0.1.1",
   "private": true,
+  "proxy": "http://localhost:8080",
+  "main": "server.ts",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emailjs/browser": "^4.3.3",
@@ -42,7 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server/server.ts",
+    "server": "nodemon api/server.ts",
     "dev": "concurrently \"npm run server\" \"npm start\""
   },
   "eslintConfig": {
