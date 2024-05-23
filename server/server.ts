@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 require("dotenv").config();
 
 const sheetsController = require("./sheetsController");
-const emailController = require("./emailController");
+// const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
 console.log('port', PORT);
 
@@ -32,37 +32,37 @@ app.get(
   }
 );
 
-app.get(
-  "/api/getSheet/:id",
-  sheetsController.getSheet,
-  (req: Request, res: Response) => {
-    return res.status(200).json(res.locals.sheet);
-  }
-);
+// app.get(
+//   "/api/getSheet/:id",
+//   sheetsController.getSheet,
+//   (req: Request, res: Response) => {
+//     return res.status(200).json(res.locals.sheet);
+//   }
+// );
 
-app.post(
-  "/api/mailingList",
-  emailController.joinMailingList,
-  (req: Request, res: Response) => {
-    return res.status(200).json(res);
-  }
-);
+// app.post(
+//   "/api/mailingList",
+//   emailController.joinMailingList,
+//   (req: Request, res: Response) => {
+//     return res.status(200).json(res);
+//   }
+// );
 
-app.post(
-  "/api/unsubscribe",
-  emailController.unsubscribe,
-  (req: Request, res: Response) => {
-    return res.status(200).json(res.locals.message);
-  }
-);
+// app.post(
+//   "/api/unsubscribe",
+//   emailController.unsubscribe,
+//   (req: Request, res: Response) => {
+//     return res.status(200).json(res.locals.message);
+//   }
+// );
 
-app.post(
-  "/api/storeOrderDetails",
-  emailController.storeOrderDetails,
-  (req: Request, res: Response) => {
-    return res.status(201).json(res.locals.message);
-  }
-);
+// app.post(
+//   "/api/storeOrderDetails",
+//   emailController.storeOrderDetails,
+//   (req: Request, res: Response) => {
+//     return res.status(201).json(res.locals.message);
+//   }
+// );
 
 // app.post(
 //   '/api/paypal-transaction-complete',
