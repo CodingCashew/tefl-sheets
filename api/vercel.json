@@ -1,7 +1,7 @@
 {
   "version": 2,
 
-  "rewrites": [
-    { "dest": "/api/server.ts" }
+  "redirects": [
+    { "src": "/api/(.*)", "dest": "/api/server.ts" }
   ]
 }
