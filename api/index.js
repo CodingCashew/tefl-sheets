@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
+const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
@@ -9,7 +10,11 @@ const emailController = require("../server/emailController");
 console.log("port", PORT);
 
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static(path.resolve(__dirname, "../src/index.css")));
+app.use(express.static(path.resolve(__dirname, "../public/assets/")));
+app.get("/", (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 app.get("/api/getSheets", sheetsController.getSheets, (req, res) => {
   return res.status(200).json(res.locals.sheets);
