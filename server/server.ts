@@ -9,7 +9,7 @@ require("dotenv").config();
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
-
+console.log('port', PORT);
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
