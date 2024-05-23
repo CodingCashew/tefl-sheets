@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 8080;
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-const sheetsController = require("./sheetsController");
-const emailController = require("./emailController");
+const sheetsController = require("../server/sheetsController");
+const emailController = require("../server/emailController");
 console.log("port", PORT);
 
 app.use(bodyParser.json());
