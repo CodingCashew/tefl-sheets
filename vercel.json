@@ -1,1 +1,11 @@
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+  "version": 2,
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "builds": [
+    {
+    "src": "./server.ts",
+    "use": "@vercel/node"
+    }
+  ],
+  "installCommand": "npm install"
+}
