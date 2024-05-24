@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 const express = require("express");
 const app = express();
-// const path = require("path");
+const path = require("path");
 const PORT = process.env.PORT || 8080;
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 require("dotenv").config();
 
 const sheetsController = require("./sheetsController");
@@ -11,18 +11,18 @@ const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
 console.log('port', PORT);
 
-app.use(bodyParser.json());
-app.use(express.static('public'));
+// app.use(bodyParser.json());
+// app.use(express.static('public'));
 // // parse incoming requests
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// // serve static and html
-// app.use(express.static(path.resolve(__dirname, "../src/index.css")));
-// app.use(express.static(path.resolve(__dirname, "../public/assets/")));
-// app.get("/", (req: Request, res: Response) => {
-//   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
-// });
+// serve static and html
+app.use(express.static(path.resolve(__dirname, "../src/index.css")));
+app.use(express.static(path.resolve(__dirname, "../public/assets/")));
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 app.get(
   "/getSheets",
