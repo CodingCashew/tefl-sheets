@@ -23,10 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "../src/index.css")));
 // app.use(express.static(path.resolve(__dirname, "../public/")));
 app.use(express.static(path.resolve(__dirname, "../public/assets/")));
-app.get("/", (req: Request, res: Response) => {
+app.get("/*", (req: Request, res: Response) => {
 // app.get("/*", (req: Request, res: Response) => {
-  // res.status(200).sendFile(path.join(__dirname, ".index.html"));
-  res.status(200).sendFile(path.join(__dirname, "build", "./index.html"));
+  res.status(200).sendFile(path.join(__dirname, ".index.html"));
+  // res.status(200).sendFile(path.join(__dirname, "build", "./index.html"));
 });
 
 app.get(
