@@ -85,7 +85,7 @@ sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
       return hasSearchParam(sheet, searchParams);
     });
 
-    res.locals.sheets = JSON.stringify(filteredSheets);
+    res.locals.sheets = filteredSheets;
     console.log('res.locals: ', res.locals);
     // res.locals.sheets = data.rows;
     return next();
