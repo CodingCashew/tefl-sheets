@@ -9,25 +9,30 @@ require("dotenv").config();
 const sheetsController = require("./sheetsController");
 const emailController = require("./emailController");
 // const paymentController = require("./paymentController");
-console.log('port', PORT);
+console.log("port !!!!!!!!!!!!!!!!!!!!!", PORT);
 
 // app.use(bodyParser.json());
 // app.use(express.static('public'));
+
 // // parse incoming requests
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: true }));
 
 // serve static and html
 app.use(express.static(path.resolve(__dirname, "../src/index.css")));
 app.use(express.static(path.resolve(__dirname, "../public/assets/")));
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
+// app.get("/*", (req: Request, res: Response) => {
+  res.status(200).sendFile(path.join(__dirname, ".index.html"));
+  // res.status(200).sendFile(path.join(__dirname, "build", "./index.html"));
 });
 
 app.get(
   "/getSheets",
   sheetsController.getSheets,
   (req: Request, res: Response) => {
+    // return res.status(200).json(['dummy data']);
     return res.status(200).json(res.locals.sheets);
   }
 );

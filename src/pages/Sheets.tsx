@@ -29,15 +29,18 @@ const Sheets: React.FC = () => {
       },
     })
       .then((response: any) => {
-        console.log('response: ', response);
+        console.log("response: ", response);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
       .then((data: any) => {
-        console.log('data: ', data)
-        setSheets(data)})
+        console.log("data: ", data);
+        if (Array.isArray(data)) {
+          setSheets(data);
+        }
+      })
       .catch((error: any) => console.error("Error:", error));
   }, []);
 
@@ -52,7 +55,11 @@ const Sheets: React.FC = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => setSheets(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setSheets(data);
+        }
+      })
       .catch((error) => console.error("Error:", error));
   };
 
