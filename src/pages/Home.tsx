@@ -119,7 +119,6 @@ const Home: React.FC = () => {
                 marginBottom: ".5rem",
                 objectFit: "cover",
                 boxShadow: "0 0 10px 5px #ccc",
-                // minWidth:"100%",
                 maxWidth: "98%",
               }}
               alt="classroom instruction"
@@ -136,22 +135,21 @@ const Home: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <Typography variant="h3" align="center">
-              something about their plight
+            <Typography variant="h3" style={{ margin: "1rem" }}>
+              At TEFL Sheets, we understand how long it takes to create
+              effective materials.
             </Typography>
             <Typography
               variant="h3"
-              align="center"
               style={{
                 color: primary.light,
-                marginBottom: "1rem",
-                marginTop: "1rem",
+                margin: "1rem",
               }}
             >
-              at TEFL Sheets, we understand
+              That's why do it for you!
             </Typography>
-            <Typography variant="h3" align="center">
-              that's why we....
+            <Typography variant="h3" style={{ margin: "1rem" }}>
+              We save you the headache and late nights.
             </Typography>
           </Grid>
         </Grid>
@@ -166,7 +164,6 @@ const Home: React.FC = () => {
           minHeight: "120vh",
           maxWidth: "100vw",
           backgroundColor: primary.main,
-          // padding: "1rem",
         }}
       >
         <Grid
@@ -175,7 +172,6 @@ const Home: React.FC = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-around",
-            // padding: "1rem",
           }}
         >
           <Grid
@@ -266,7 +262,6 @@ const Home: React.FC = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-around",
-            // padding: "1rem",
           }}
         >
           <Grid
@@ -293,10 +288,8 @@ const Home: React.FC = () => {
               align="center"
               style={{ marginTop: "1rem" }}
             >
-              Select Your SheetsSelect Your SheetsSelect Your SheetsSelect Your
-              SheetsSelect Your SheetsSelect Your SheetsSelect Your SheetsSelect
-              Your SheetsSelect Your SheetsSelect Your SheetsSelect Your
-              SheetsSelect Your SheetsSelect Your Sheets
+              Find the right materials for your lesson plan. Choose from a wide
+              selection of sheets for all levels and age groups.
             </Typography>
           </Grid>
           <Grid
@@ -322,10 +315,8 @@ const Home: React.FC = () => {
               align="center"
               style={{ marginTop: "1rem" }}
             >
-              Utilize them in your classroom Utilize them in your classroom
-              Utilize them in your classroom Utilize them in your classroom
-              Utilize them in your classroom Utilize them in your classroom
-              Utilize them in your classroom Utilize them in your classroom
+              Our sheets are designed to save paper and ink. Be more
+              eco-friendly and make your administration love you.
             </Typography>
           </Grid>
           <Grid
@@ -351,9 +342,9 @@ const Home: React.FC = () => {
               align="center"
               style={{ marginTop: "1rem" }}
             >
-              Watch the engagement grow Watch the engagement grow Watch the
-              engagement grow Watch the engagement grow Watch the engagement
-              grow Watch the engagement grow Watch the engagement grow
+              Reinforce the most important concepts and watch your students'
+              engagement grow. TEFL Sheets are designed to help you make the
+              most of your classroom time.
             </Typography>
           </Grid>
         </Grid>
@@ -414,7 +405,6 @@ const Home: React.FC = () => {
             flexWrap: "wrap",
             justifyContent: "space-around",
             alignItems: "center",
-            // padding: "1rem",
           }}
         >
           <Grid
@@ -526,8 +516,8 @@ const Home: React.FC = () => {
               align="center"
               style={{ marginTop: "1rem" }}
             >
-              Watch your students' engagement grow as you use TEFL Sheets in
-              your classroom.
+              Watch your students' English improve drastically as you use TEFL
+              Sheets in your classroom.
             </Typography>
           </Grid>
         </Grid>
@@ -551,7 +541,6 @@ const Home: React.FC = () => {
           minHeight: "100vh",
           maxWidth: "100vw",
           backgroundColor: grey[800],
-          // padding: "1rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -579,9 +568,6 @@ const Home: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            {/* <Typography variant="h3" align="center">
-              something about their plight
-            </Typography> */}
             <Typography
               variant="h3"
               align="center"
@@ -591,11 +577,9 @@ const Home: React.FC = () => {
                 marginTop: "1rem",
               }}
             >
-              Don't be a failure/waste a bunch of time
+              Stop wasting time designing materials and start engaging your
+              students.
             </Typography>
-            {/* <Typography variant="h3" align="center">
-              that's why we....
-            </Typography> */}
           </Grid>
           <Grid
             item
@@ -639,7 +623,7 @@ const Home: React.FC = () => {
           gutterBottom
           style={{ color: "white" }}
         >
-          Save time and focus on what matters most by using TEFL Sheets
+          Save time and focus on what matters most by using TEFL Sheets.
         </Typography>
       </Box>
       {/* row 7 */}

@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import { Request, Response } from "express";
 import { ReactNode } from "react";
 
@@ -7,7 +7,11 @@ export interface SheetsController {
   getSheet?: (req: Request, res: Response, next: any) => void;
 }
 export interface EmailController {
-  joinMailingList?: (req: VercelRequest, res: VercelResponse, next: any) => void;
+  joinMailingList?: (
+    req: VercelRequest,
+    res: VercelResponse,
+    next: any
+  ) => void;
   unsubscribe?: (req: Request, res: Response, next: any) => void;
   storeOrderDetails?: (req: Request, res: Response, next: any) => void;
 }

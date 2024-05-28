@@ -1,12 +1,9 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from "react";
-import { Sheet, ShoppingCartContextType, ShoppingCartProviderProps } from "../../shared/interfaces";
-
-
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  Sheet,
+  ShoppingCartContextType,
+  ShoppingCartProviderProps,
+} from "../../shared/interfaces";
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
@@ -30,7 +27,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   function addSheet(newSheet: Sheet) {
     setSheetsInCart((currentSheets: any) => {
-      if (currentSheets.find((currentSheet: any) => currentSheet.id === newSheet.id) == null) {
+      if (
+        currentSheets.find(
+          (currentSheet: any) => currentSheet.id === newSheet.id
+        ) == null
+      ) {
         return [...currentSheets, newSheet];
       } else return currentSheets;
     });
@@ -49,7 +50,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   const numOfSheets = () => {
-    return sheetsInCart.length
+    return sheetsInCart.length;
   };
 
   const subtotal = (): number => {

@@ -12,8 +12,6 @@ export default function Footer() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        // position: "fixed",
-        // bottom: 0
       }}
     >
       <Link href="/contact">

@@ -11,8 +11,8 @@ const ThankYou: React.FC = () => {
         Your order is complete.
       </Typography>
       <Typography variant="body1" align="center">
-        We've sent an email to your email address with the PDF you
-        ordered attached. Please check your email.
+        We've sent an email to your email address with the PDF you ordered
+        attached. Please check your email.
       </Typography>
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}

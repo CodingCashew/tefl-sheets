@@ -73,24 +73,17 @@ const hasSearchParam = (sheet: Sheet, searchParams = ""): boolean => {
 export const sheetsController: SheetsController = {};
 
 sheetsController.getSheets = (req: Request, res: Response, next: any): void => {
-  console.log("in getSheets ----------------------->");
   const searchParams = req.query.search as string;
+
   try {
-    // const queryString = `SELECT * FROM sheets;`;
-
-    // db.query(queryString)
-    //   .then((data) => {
-
     const filteredSheets = temporarySheets.filter((sheet) => {
       return hasSearchParam(sheet, searchParams);
     });
 
     res.locals.sheets = filteredSheets;
-    console.log('res.locals: ', res.locals);
-    // res.locals.sheets = data.rows;
+
     return next();
   } catch (err: any) {
-    // })
     next({
       log: `Error in sheetsController.getSheets: ${err}`,
       message: { err: "Error getting sheets" },
@@ -102,21 +95,15 @@ sheetsController.getSheet = (req: Request, res: Response, next: any): void => {
   const id = req.params.id;
   try {
     const sheet = temporarySheets.find((sheet) => sheet.id === Number(id));
-    // const queryString = `SELECT * FROM sheets where id=${id};`;
 
-    // db.query(queryString)
-    //   .then((data) => {
     res.locals.sheet = sheet;
-    // res.locals.sheets = data.rows;
+
     return next();
   } catch (err: any) {
-    // })
-    // .catch((err) =>
     next({
       log: `Error in sheetsController.getSheet: ${err}`,
       message: { err: "Error getting sheet" },
     });
-    // );
   }
 };
 

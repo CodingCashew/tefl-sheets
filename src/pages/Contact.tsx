@@ -51,13 +51,12 @@ const Contact: React.FC = () => {
   return (
     <Container>
       <Box
-        //  component="form"
         display="flex"
         flexDirection="column"
         justifyContent="center"
         style={{ minHeight: "100vh" }}
       >
-        <form >
+        <form>
           <Grid
             container
             direction="column"
@@ -115,7 +114,12 @@ const Contact: React.FC = () => {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" type="submit" color="secondary" onClick={sendEmail}>
+              <Button
+                variant="contained"
+                type="submit"
+                color="secondary"
+                onClick={sendEmail}
+              >
                 Submit Message <BsChevronRight />
               </Button>
             </Grid>

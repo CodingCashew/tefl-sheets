@@ -13,7 +13,6 @@ const Unsubscribe: React.FC = () => {
 
   const unsubscribe = (e: any) => {
     e.preventDefault();
-    // if (!email) return;
     fetch(`/unsubscribe`, {
       method: "POST",
       headers: {

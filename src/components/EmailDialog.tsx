@@ -50,12 +50,12 @@ const EmailDialog: React.FC<EmailDialogProps> = ({ open, setOpen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-          alert("You have successfully joined our mailing list!");
-          setValues({
-            name: "",
-            email: "",
-          });
-          setOpen(false);
+        alert("You have successfully joined our mailing list!");
+        setValues({
+          name: "",
+          email: "",
+        });
+        setOpen(false);
       })
 
       .catch((err) => console.log(err));

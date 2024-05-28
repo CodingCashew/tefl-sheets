@@ -31,5 +31,5 @@ ReactDOM.render(
       </React.StrictMode>
     </ShoppingCartProvider>
   </ThemeProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

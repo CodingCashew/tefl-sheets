@@ -29,24 +29,18 @@ const Sheets: React.FC = () => {
       },
     })
       .then((response: any) => {
-        console.log("response: ", response);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
       .then((data: any) => {
-        // console.log("data: ", data);
-        // if (Array.isArray(data)) {
-          setSheets(data);
-        // }
+        setSheets(data);
       })
       .catch((error: any) => console.error("Error:", error));
   }, []);
 
   const searchSheets = () => {
-    if (!searchParams) return;
-
     fetch(`/getSheets?search=${searchParams}`, {
       method: "GET",
       headers: {
@@ -56,9 +50,7 @@ const Sheets: React.FC = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // if (Array.isArray(data)) {
-          setSheets(data);
-        // }
+        setSheets(data);
       })
       .catch((error) => console.error("Error:", error));
   };
